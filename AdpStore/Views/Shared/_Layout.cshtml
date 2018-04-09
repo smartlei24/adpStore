@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 爱搭配</title>
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/flexslider.css" />
+        <link rel="stylesheet" href="~/css/memenu.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+
+        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/main.js"></script>
+        <script src="~/js/jquery.flexslider.js"></script>
+        <script src="~/js/memenu.js"></script>
+        <script src="~/js/responsiveslides.min.js"></script>
+        <script src="~/js/simpleCart.min.js"></script>
+    </environment>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="search">
+                    <form>
+                        <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="submit" value="Go">
+                    </form>
+                </div>
+                <div class="header-left">
+                    <ul>
+                        <li>
+                            <a href="~/login">登录</a>
+                        </li>
+                        <li>
+                            <a href="~/register">注册</a>
+                        </li>
+
+                    </ul>
+                    @*@await Html.PartialAsync("_LoginPartial")*@
+                    <div class="cart box_1">
+                        <a href="~/shopping-cart">
+                            <h3>
+                                <div class="total">
+                                    <span class="simpleCart_total"></span> (
+                                    <span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+                                </div>
+                                <img src="images/cart.png" alt="" />
+                            </h3>
+                        </a>
+                        <p>
+                            <a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
+                        </p>
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="head-top">
+                <div class="logo">
+                    <a href="~/">
+                        <img src="images/logo1.png" alt="">
+                    </a>
+                </div>
+                <div class=" h_menu4">
+                    <ul class="memenu skyblue">
+                        <li class="active grid">
+                            <a class="color8" href="~/">首页</a>
+                        </li>
+                        <li>
+                            <a class="color1" href="#">不同场合</a>
+                            <div class="mepanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Popular Occasion</h4>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/product">聚会</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/product">面试</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/productml">户外娱乐</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="grid">
+                            <a class="color2" href="#"> 不同风格</a>
+                            <div class="mepanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Popular Style</h4>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/product">淑女风</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/product">休闲风</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/product">职业风</a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/product">运动风</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a class="color6" href="contact.html">联系我们</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @RenderBody()
+        <hr />
+        <div class="footer">
+            <div class="container">
+                <div class="footer-top-at">
+
+                    <div class="col-md-4 amet-sed">
+                        <h4>MORE INFO</h4>
+                        <ul class="nav-bottom">
+                            <li>
+                                <a href="#">How to order</a>
+                            </li>
+                            <li>
+                                <a href="#">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">Location</a>
+                            </li>
+                            <li>
+                                <a href="#">Shipping</a>
+                            </li>
+                            <li>
+                                <a href="#">Membership</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 amet-sed ">
+                        <h4>CONTACT US</h4>
+
+                        <p>
+                            Contrary to popular belief
+                        </p>
+                        <p>The standard chunk</p>
+                        <p>office: +12 34 995 0792</p>
+                        <ul class="social">
+                            <li>
+                                <a href="#">
+                                    <i> </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="twitter"> </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="rss"> </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="gmail"> </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 amet-sed">
+                        <h4>Newsletter</h4>
+                        <p>Sign Up to get all news update and promo</p>
+                        <form>
+                            <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                            <input type="submit" value="Sign up">
+                        </form>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="footer-class">
+                <p>Copyright &copy; 2018.Liu.Huan.</p>
+            </div>
+        </div>
+    </div>
+
+    <environment include="Development">
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
