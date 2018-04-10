@@ -1,5 +1,3 @@
-using System;
-
 namespace AdpStore.Models
 {
     public class ErrorViewModel

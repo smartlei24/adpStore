@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AdpStoreEntity
+namespace AdpStore.Models
 {
     public class ShoppingCart
     {

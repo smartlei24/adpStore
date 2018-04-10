@@ -1,0 +1,60 @@
+﻿@model AdpStore.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SimpleDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SimpleDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DetailDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DetailDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Style)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Style)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Situation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Situation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Indate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Indate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

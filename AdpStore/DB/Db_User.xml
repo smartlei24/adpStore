@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ConnectionStrings>
-    <DataConnection Name="LocalDb" ConnectionString="Data Source=(localdb)\MyLocalDB;Integrated Security=True" />
-  </ConnectionStrings>
-  <SqlConfig>
-    
-  </SqlConfig>
-</DbConfig>
