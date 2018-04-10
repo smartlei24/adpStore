@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SqlConfigs>
+    <DbSql CommandName="QueryProductByProductStyle" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            ProductId,
+            Name,
+            SimpleDescription,
+            DetailDescription,
+            Price,
+            Situation,
+            Style,
+            Indate
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Style=@Style
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
+    <DbSql CommandName="QueryProductByProductName" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            ProductId,
+            Name,
+            SimpleDescription,
+            DetailDescription,
+            Price,
+            Situation,
+            Style,
+            Indate
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Name like @productName '%'
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
+  </SqlConfigs>
+</DbConfig>

@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="VIC.DataAccess" Version="2.0.14" />
+    <PackageReference Include="VIC.DataAccess.Config" Version="2.0.10" />
+    <PackageReference Include="VIC.DataAccess.MSSql" Version="2.0.9" />
   </ItemGroup>
 
   <ItemGroup>
