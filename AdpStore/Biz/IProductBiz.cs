@@ -7,5 +7,6 @@ namespace AdpStore.Biz
 {
     interface IProductBiz
     {
+
     }
 }

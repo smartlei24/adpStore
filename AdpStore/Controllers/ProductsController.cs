@@ -25,5 +25,18 @@ namespace AdpStore.Controllers
             var products = this.dao.QueryProductByProductStyle(style);
             return View(products);
         }
+
+        [HttpGet("products/name/{name}")]
+        public async Task<IActionResult> Index(string style)
+        {
+            var products = this.dao.QueryProductByProductStyle(style);
+            return View(products);
+        }
+
+        public ActionResult (PaginationReqModel paginationReqModel)
+        {
+            var displayOrders = this.dao.QueryProductByProductStyle();
+
+        }
     }
 }
