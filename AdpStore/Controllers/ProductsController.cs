@@ -20,7 +20,7 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet("products/style/{style}")]
-        public async Task<IActionResult> QueryProductByStyle(string style)
+        public async Task<IActionResult> Index(string style)
         {
             var products = this.dao.QueryProductByProductStyle(style);
             return View(products);

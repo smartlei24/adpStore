@@ -41,79 +41,90 @@
 
 
 </div>
-<!---->
-<div class="product-bottom">
-    <div class="of-left-in">
-        <h3 class="best">Best Sellers</h3>
+<div class="col-md-3">
+    <!---->
+    <div class="product-bottom">
+        <div class="of-left-in">
+            <h3 class="best">Best Sellers</h3>
+        </div>
+        <div class="product-go">
+            <div class=" fashion-grid">
+                <a href="single.html">
+                    <img class="img-responsive " src="images/p1.jpg" alt="">
+                </a>
+
+            </div>
+            <div class=" fashion-grid1">
+                <h6 class="best2">
+                    <a href="single.html">Lorem ipsum dolor sit amet consectetuer </a>
+                </h6>
+
+                <span class=" price-in1"> $40.00</span>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="product-go">
+            <div class=" fashion-grid">
+                <a href="single.html">
+                    <img class="img-responsive " src="images/p2.jpg" alt="">
+                </a>
+
+            </div>
+            <div class="fashion-grid1">
+                <h6 class="best2">
+                    <a href="single.html">Lorem ipsum dolor sit amet consectetuer </a>
+                </h6>
+
+                <span class=" price-in1"> $40.00</span>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+
     </div>
-    <div class="product-go">
-        <div class=" fashion-grid">
-            <a href="single.html">
-                <img class="img-responsive " src="images/p1.jpg" alt="">
-            </a>
-
-        </div>
-        <div class=" fashion-grid1">
-            <h6 class="best2">
-                <a href="single.html">Lorem ipsum dolor sit amet consectetuer </a>
-            </h6>
-
-            <span class=" price-in1"> $40.00</span>
-        </div>
-
-        <div class="clearfix"> </div>
+    <div class=" per1">
+        <a href="single.html">
+            <img class="img-responsive" src="images/pro.jpg" alt="">
+            <div class="six1">
+                <h4>DISCOUNT</h4>
+                <p>Up to</p>
+                <span>60%</span>
+            </div>
+        </a>
     </div>
-    <div class="product-go">
-        <div class=" fashion-grid">
-            <a href="single.html">
-                <img class="img-responsive " src="images/p2.jpg" alt="">
-            </a>
-
-        </div>
-        <div class="fashion-grid1">
-            <h6 class="best2">
-                <a href="single.html">Lorem ipsum dolor sit amet consectetuer </a>
-            </h6>
-
-            <span class=" price-in1"> $40.00</span>
-        </div>
-
-        <div class="clearfix"> </div>
-    </div>
-
 </div>
-<div class=" per1">
-    <a href="single.html">
-        <img class="img-responsive" src="images/pro.jpg" alt="">
-        <div class="six1">
-            <h4>DISCOUNT</h4>
-            <p>Up to</p>
-            <span>60%</span>
-        </div>
-    </a>
-</div>
-			</div>
 <div class="col-md-9 product1">
     <div class=" bottom-product">
-        @foreach (var product in Model)
+        @if (Model.Count() >= 0)
         {
-            <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                <div class="product-at ">
-                    <a href="~/product-detail/@product.ProductId">
-                        <img class="img-responsive" src="images/p1.jpg" alt="">
-                        <div class="pro-grid">
-                            <span class="buy-in">Buy Now</span>
-                        </div>
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                    <div class="product-at ">
+                        <a href="~/product-detail/@product.ProductId">
+                            <img class="img-responsive" src="~/images/p2.jpg" alt="">
+                            <div class="pro-grid">
+                                <span class="buy-in">Buy Now</span>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="tun">@Html.DisplayFor(modelItem => product.Name)</p>
+                    <a href="#" class="item_add">
+                        <p class="number item_price">
+                            <i> </i>@Html.DisplayFor(modelItem => product.Price)
+                        </p>
                     </a>
                 </div>
-                <p class="tun">@Html.DisplayFor(modelItem => product.Name)</p>
-                <a href="#" class="item_add">
-                    <p class="number item_price">
-                        <i> </i>$500.00
-                    </p>
-                </a>
-            </div>
+            }
         }
+        else
+        {
+             <div>
+                 无相关结果
+             </div>
+        }
+
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -162,6 +173,6 @@
         </li>
     </ul>
 </nav>
-		</div>
+</div>
 	</div>
 

@@ -10,6 +10,6 @@ namespace AdpStore.Dao
     {
         List<Product> QueryProductByProductName(string productName);
 
-        List<Product> QueryProductByProductStyle(string productType);
+        List<Product> QueryProductByProductStyle(string style);
     }
 }

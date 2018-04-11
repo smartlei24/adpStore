@@ -22,10 +22,14 @@ namespace AdpStore.Dao
                 .ExecuteEntityList<Product>(productName);
         }
 
-        public List<Product> QueryProductByProductStyle(string productType)
+        public List<Product> QueryProductByProductStyle(string style)
         {
-            return this._db.GetCommand("QueryProductByProductStyle")
-                .ExecuteEntityList<Product>(productType);
+            var a = this._db.GetCommand("QueryProductByProductStyle");
+
+            return a.ExecuteEntityList<Product>(new
+            {
+                Style = style
+            });
         }
     }
 }

@@ -27,20 +27,22 @@ namespace AdpStore
 
         public IConfiguration Configuration { get; }
 
+        private static string currentDirectory = Directory.GetCurrentDirectory();
+        private static string dbDirectory = Path.Combine(currentDirectory, "DB");
+
+
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
-            var basePath = Path.Combine(Directory.GetCurrentDirectory(), "DB");
-
             services.UseDataAccess()
-                .UseDataAccessConfig(basePath, false, null, "db.Development.xml", "Product.xml")
+                .UseDataAccessConfig(dbDirectory, false, null, "db.Development.xml", "Product.xml")
                 .BuildServiceProvider();
 
             services
-                .AddSingleton<IConfig>()
-                .AddSingleton<IDbManager, DbManager>()
                 .AddSingleton<IAdpDao, AdpDao>();
 
         }
