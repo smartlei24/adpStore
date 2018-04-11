@@ -13,5 +13,10 @@ namespace AdpStore.Controllers
         {
             return View();
         }
+
+        public bool AddMessage(string message)
+        {
+            return false;
+        }
     }
 }
