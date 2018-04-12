@@ -25,7 +25,7 @@ CREATE TABLE dbo.[Product]
     ProductId INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
     [Name] NVARCHAR(200) NOT NULL,
     SimpleDescription NVARCHAR(500) NULL,
-    ComplexDescription NVARCHAR(1000) NULL,
+    DetailDescription NVARCHAR(1000) NULL,
     Price DECIMAL(12,2) NULL,
     Situation NVARCHAR(20) NULL,
     Style NVARCHAR(20) NULL,

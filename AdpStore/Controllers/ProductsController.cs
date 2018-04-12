@@ -6,24 +6,46 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdpStore.Models;
-using AdpStore.Dao;
+using AdpStore.Biz;
 
 namespace AdpStore.Controllers
 {
+    [Route("product/")]
     public class ProductsController : Controller
     {
-        private IAdpDao dao;
+        private IProductBiz dao;
 
-        public ProductsController(IAdpDao dao)
+        public ProductsController(IProductBiz dao)
         {
             this.dao = dao;
         }
 
-        [HttpGet("products/style/{style}")]
-        public async Task<IActionResult> Index(string style)
+        [HttpGet()]
+        public async Task<IActionResult> QueryAllProduct()
+        {
+            var products = this.dao.QueryAllProducts();
+            return View("Index", products);
+        }
+
+        [HttpGet("name/{name}")]
+        public async Task<IActionResult> QueryProductByName(string name)
+        {
+            var products = this.dao.QueryProductByProductName(name);
+            return View("Index", products);
+        }
+
+        [HttpGet("style/{style}")]
+        public async Task<IActionResult> QueryProductByProductStyle(string style)
         {
             var products = this.dao.QueryProductByProductStyle(style);
-            return View(products);
+            return View("Index", products);
+        }
+
+        [HttpGet("situation/{situation}")]
+        public async Task<IActionResult> QueryProductsBySituation(string situation)
+        {
+            var products = this.dao.QueryProductsBySituation(situation);
+            return View("Index", products);
         }
     }
 }
