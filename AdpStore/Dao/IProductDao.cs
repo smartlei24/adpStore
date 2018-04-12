@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdpStore.Biz
+namespace AdpStore.Dao
 {
-    public interface IProductBiz
+    public interface IProductDao
     {
-        Product QueryProductDetail(int productId);
-
         List<Product> QueryAllProducts();
 
         List<Product> QueryProductByProductName(string productName);
@@ -17,6 +15,8 @@ namespace AdpStore.Biz
         List<Product> QueryProductByProductStyle(string style);
 
         List<Product> QueryProductsBySituation(string situation);
+
+        Product QueryProductDetail(int productId);
 
         bool AddNewProduct(Product newProduct);
 

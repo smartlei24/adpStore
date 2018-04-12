@@ -6,37 +6,67 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdpStore.Models;
-using AdpStore.Dao;
+using AdpStore.Biz;
 
 namespace AdpStore.Controllers
 {
+    [Route("product/")]
     public class ProductsController : Controller
     {
-        private IAdpDao dao;
+        private IProductBiz biz;
 
-        public ProductsController(IAdpDao dao)
+        public ProductsController(IProductBiz biz)
         {
-            this.dao = dao;
+            this.biz = biz;
         }
 
-        [HttpGet("products/style/{style}")]
-        public async Task<IActionResult> Index(string style)
+        [HttpGet()]
+        public async Task<IActionResult> QueryAllProduct()
         {
-            var products = this.dao.QueryProductByProductStyle(style);
-            return View(products);
+            var products = this.biz.QueryAllProducts();
+            return View("Index", products);
         }
 
-        [HttpGet("products/name/{name}")]
-        public async Task<IActionResult> Index(string style)
+        [HttpGet("name/{name}")]
+        public async Task<IActionResult> QueryProductByName(string name)
         {
-            var products = this.dao.QueryProductByProductStyle(style);
-            return View(products);
+            var products = this.biz.QueryProductByProductName(name);
+            return View("Index", products);
         }
 
-        public ActionResult (PaginationReqModel paginationReqModel)
+        [HttpGet("style/{style}")]
+        public async Task<IActionResult> QueryProductByProductStyle(string style)
         {
-            var displayOrders = this.dao.QueryProductByProductStyle();
+            var products = this.biz.QueryProductByProductStyle(style);
+            return View("Index", products);
+        }
 
+        [HttpGet("situation/{situation}")]
+        public async Task<IActionResult> QueryProductsBySituation(string situation)
+        {
+            var products = this.biz.QueryProductsBySituation(situation);
+            return View("Index", products);
+        }
+
+        [HttpPut("product")]
+        public async Task<IActionResult> UpdateProductInfo(Product product)
+        {
+            var updatedProduct = this.biz.UpdateProduct(product);
+            return View("Index", updatedProduct);
+        }
+
+        [HttpDelete("product/{id}")]
+        public async Task<IActionResult> DeleteProductById(int id)
+        {
+            var isSuccessful = this.biz.DeleteProductById(id);
+            return View("Index");
+        }
+
+        [HttpPost("product/")]
+        public async Task<IActionResult> AddNewProduct(Product product)
+        {
+            var updatedProduct = this.biz.AddNewProduct(product);
+            return View("Index", updatedProduct);
         }
     }
 }

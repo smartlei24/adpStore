@@ -9,14 +9,16 @@ namespace AdpStore.Controllers
     [Route("Contact")]
     public class ContactController : Controller
     {
+        [HttpGet()]
         public IActionResult Index()
         {
             return View();
         }
 
-        public bool AddMessage(string message)
+        [HttpPost()]
+        public IActionResult AddMessage()
         {
-            return false;
+            return View("Index");
         }
     }
 }

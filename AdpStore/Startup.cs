@@ -43,7 +43,7 @@ namespace AdpStore
                 .BuildServiceProvider();
 
             services
-                .AddSingleton<IAdpDao, AdpDao>();
+                .AddSingleton<IProductDao, ProductDao>();
 
         }
 
