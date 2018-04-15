@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SqlConfigs>
+    <DbSql CommandName="QueryOrderById" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+
+      ]]>
+      </Text>
+    </DbSql>
+  </SqlConfigs>
+</DbConfig>

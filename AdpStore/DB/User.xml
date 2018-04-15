@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SqlConfigs>
+    <DbSql CommandName="QueryUserById" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            UserID,
+            Name,
+            PassWord,
+            EmailAddress,
+            TelNumber,
+            Address,
+            Indate
+        FROM dbo.User 
+        WHERE UserId=@UserId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="QueryAllUser" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            UserID,
+            Name,
+            PassWord,
+            EmailAddress,
+            TelNumber,
+            Address,
+            Indate
+        FROM dbo.User
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="UpdateUserInfo" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        UPDATE dbo.User 
+        SET Name=@Name, 
+            PassWord=@PassWord, 
+            EmailAddress=@EmailAddress, 
+            TelNumber=@TelNumber, 
+            Address=@Address
+        Where UserId=@UserId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="AddANewUser" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        INSERT INTO dbo.User 
+        (Name, PassWord, EmailAddress, TelNumber, Address) 
+        VALUES
+        (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="InsertANewUser" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        INSERT INTO dbo.User 
+        (Name, PassWord, EmailAddress, TelNumber, Address) 
+        VALUES
+        (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="DeleteUserById" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        DELETE FROM dbo.User WHERE UserId=@UserId
+      ]]>
+      </Text>
+    </DbSql>
+  </SqlConfigs>
+</DbConfig>

@@ -15,10 +15,55 @@
             Indate
         FROM dbo.Product WITH(NOLOCK)
         WHERE Style=@Style
+        ORDER BY ProductId DESC
+        OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
       ]]>
       </Text>
       <PreParameters>
         <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
+    <DbSql CommandName="QueryAllProducts" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            ProductId,
+            Name,
+            SimpleDescription,
+            DetailDescription,
+            Price,
+            Situation,
+            Style,
+            Indate
+        FROM dbo.Product WITH(NOLOCK)
+        ORDER BY ProductId DESC
+        OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
+    <DbSql CommandName="QueryProductByProductSituation" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            ProductId,
+            Name,
+            SimpleDescription,
+            DetailDescription,
+            Price,
+            Situation,
+            Style,
+            Indate
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Situation=@Situation
+        ORDER BY ProductId DESC
+        OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Situation" Direction="Input" Type="AnsiString" />
       </PreParameters>
     </DbSql>
     <DbSql CommandName="QueryProductByProductName" Type="Text" ConnectionName="Test">
@@ -34,12 +79,64 @@
             Style,
             Indate
         FROM dbo.Product WITH(NOLOCK)
-        WHERE Name like @productName '%'
+        WHERE Name like @productName+'%'
+        ORDER BY ProductId DESC
+        OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
       ]]>
       </Text>
       <PreParameters>
         <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
       </PreParameters>
+    </DbSql>
+    <DbSql CommandName="InsertANewProduct" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        INSERT TOP(1) INTO dbo.Product
+            (Name, SimpleDescription, DateilDescription, Price, Situation, Style)
+        VALUES
+            (@Name, @SimpleDescription, @DateilDescription, @Price, @Situation, @Style)
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="DeleteAExistProduct" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        DELETE FROM dbo.Product WHERE ProductId=@ProductId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="UpdateProductInfo" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        UPDATE dbo.Product SET 
+          Name=@Name,
+          SimpleDescription=@SimpleDescription,
+          DetailDescription=@DetailDescription,
+          Price=@Price,
+          Situaion=@Situation,
+          Style=@Style,
+        WHERE ProductId=@ProductId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="QueryProductById" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+            ProductId,
+            Name,
+            SimpleDescription,
+            DetailDescription,
+            Price,
+            Situation,
+            Style,
+            Indate
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE ProductId=@ProductId
+        ORDER BY ProductId DESC
+        OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
+      ]]>
+      </Text>
     </DbSql>
   </SqlConfigs>
 </DbConfig>

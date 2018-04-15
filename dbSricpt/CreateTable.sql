@@ -14,7 +14,7 @@ Create TABLE dbo.[User]
 
 CREATE TABLE dbo.[ShoppingCart]
 (
-    Id INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
+    ShoppingId INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
     ProductId INT NOT NULL,
     UserId INT NOT NULL,
     Indate DATETIME DEFAULT GETDATE()
