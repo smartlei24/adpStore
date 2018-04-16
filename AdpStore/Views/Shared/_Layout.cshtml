@@ -32,15 +32,25 @@
                 </div>
                 <div class="header-left">
                     <ul>
+                        @if (!string.IsNullOrEmpty(@User.Identity.Name))
+                    {
                         <li>
-                            <a href="~/login">登录</a>
+                            <a href="#">@User.Identity.Name</a>
                         </li>
                         <li>
-                            <a href="~/register">注册</a>
+                            <a asp-controller="Login" asp-action="Logout">登出</a>
                         </li>
-
+                }
+                else
+                {
+                    <li>
+                        <a href="~/login">登录</a>
+                    </li>
+                    <li>
+                        <a href="~/register">注册</a>
+                    </li>
+            }
                     </ul>
-                    @*@await Html.PartialAsync("_LoginPartial")*@
                     <div class="cart box_1">
                         <a href="~/shopping-cart">
                             <h3>
@@ -61,6 +71,7 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
         <div class="container">
             <div class="head-top">
                 <div class="logo">
@@ -74,7 +85,7 @@
                             <a class="color8" href="~/">首页</a>
                         </li>
                         <li>
-                            <a class="color1" href="#">不同场合</a>
+                            <a class="color1" href="javascript:void(0);" >不同场合</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1">
@@ -97,7 +108,7 @@
                             </div>
                         </li>
                         <li class="grid">
-                            <a class="color2" href="#"> 不同风格</a>
+                            <a class="color2" href="javascript:void(0);" > 不同风格</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1">

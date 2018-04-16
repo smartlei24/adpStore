@@ -4,7 +4,40 @@
     <DbSql CommandName="QueryOrderById" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-
+        SELECT 
+            OrderId,
+            UserId,
+            ProductId,
+            Quantity,
+            OrderPrice,
+            Indate
+        FROM dbo.adpStore WITH(NOLOCK)
+        WHERE OrderId=@OrderId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="QueryOrderByUserId" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT 
+            OrderId,
+            UserId,
+            ProductId,
+            Quantity,
+            OrderPrice,
+            Indate
+        FROM dbo.adpStore WITH(NOLOCK)
+        WHERE UserId=@UserId
+      ]]>
+      </Text>
+    </DbSql>
+      <DbSql CommandName="InsertANewOrder" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        INSERT INTO dbo.adpStore
+        (UserId,ProductId, Quantity, OrderPrice)
+        VALUES
+        (@UserId, @ProductId, @Quantity, @OrderPrice)
       ]]>
       </Text>
     </DbSql>

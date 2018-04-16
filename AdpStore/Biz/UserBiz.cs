@@ -23,7 +23,15 @@ namespace AdpStore.Biz
 
         public bool CheckUserIsExist(User user)
         {
-            throw new NotImplementedException();
+            var queryUser = this.dao.QueryUserByUserName(user.Name);
+            if (queryUser != null)
+            {
+                return user.Password.Equals(queryUser.Password);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool DeleteUserById(int id)

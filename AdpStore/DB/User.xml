@@ -5,15 +5,31 @@
       <Text>
         <![CDATA[
         SELECT
-            UserID,
-            Name,
-            PassWord,
-            EmailAddress,
-            TelNumber,
-            Address,
+            UserId,
+            RTRIM(Name) AS Name,
+            RTRIM(PassWord) AS PassWord,
+            RTRIM(EmailAddress) AS EmailAddress,
+            RTRIM(TelNumber) AS TelNumber,
+            RTRIM(Address) AS Address,
             Indate
-        FROM dbo.User 
+        FROM dbo.[User] 
         WHERE UserId=@UserId
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="QueryUserByName" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT TOP 1
+            UserId,
+            RTRIM(Name) AS Name,
+            RTRIM(PassWord) AS PassWord,
+            RTRIM(EmailAddress) AS EmailAddress,
+            RTRIM(TelNumber) AS TelNumber,
+            RTRIM(Address) AS Address,
+            Indate
+        FROM dbo.[User] 
+        WHERE Name=@Name
       ]]>
       </Text>
     </DbSql>
@@ -21,21 +37,21 @@
       <Text>
         <![CDATA[
         SELECT
-            UserID,
-            Name,
-            PassWord,
-            EmailAddress,
-            TelNumber,
-            Address,
+            UserId,
+            RTRIM(Name) AS Name,
+            RTRIM(PassWord) AS PassWord,
+            RTRIM(EmailAddress) AS EmailAddress,
+            RTRIM(TelNumber) AS TelNumber,
+            RTRIM(Address) AS Address,
             Indate
-        FROM dbo.User
+        FROM dbo.[User]
       ]]>
       </Text>
     </DbSql>
     <DbSql CommandName="UpdateUserInfo" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        UPDATE dbo.User 
+        UPDATE dbo.[User] 
         SET Name=@Name, 
             PassWord=@PassWord, 
             EmailAddress=@EmailAddress, 
@@ -48,7 +64,7 @@
     <DbSql CommandName="AddANewUser" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        INSERT INTO dbo.User 
+        INSERT INTO dbo.[User] 
         (Name, PassWord, EmailAddress, TelNumber, Address) 
         VALUES
         (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
@@ -58,7 +74,7 @@
     <DbSql CommandName="InsertANewUser" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        INSERT INTO dbo.User 
+        INSERT INTO dbo.[User] 
         (Name, PassWord, EmailAddress, TelNumber, Address) 
         VALUES
         (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
@@ -68,7 +84,7 @@
     <DbSql CommandName="DeleteUserById" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        DELETE FROM dbo.User WHERE UserId=@UserId
+        DELETE FROM dbo.[User] WHERE UserId=@UserId
       ]]>
       </Text>
     </DbSql>

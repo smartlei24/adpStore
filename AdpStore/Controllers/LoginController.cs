@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AdpStore.Biz;
 using AdpStore.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdpStore.Controllers
 {
-    [Route("Login")]
+    [Route("login")]
     public class LoginController : Controller
     {
         private IUserBiz biz;
@@ -18,10 +21,40 @@ namespace AdpStore.Controllers
             this.biz = biz;
         }
 
-        public IActionResult Login(User user)
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+        [Route("login")]
+        public async Task<IActionResult> Login(User user)
         {
             var isExist = this.biz.CheckUserIsExist(user);
-            return View("Index", user);
+            if (isExist)
+            {
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaim(new Claim(ClaimTypes.Sid, user.Name));
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                return Redirect("/");
+            }
+            else
+            {
+                ModelState.AddModelError("", "用户名或密码错误");
+                return View("Index");
+            }
+        }
+
+        private bool hasLoggedIn()
+        {
+            return !string.IsNullOrWhiteSpace(User.Identity.Name);
+        }
+
+        [Route("logout")]
+        public async Task<IActionResult> Logout(User user)
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/");
         }
     }
 }

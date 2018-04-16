@@ -17,5 +17,7 @@ namespace AdpStore.Dao
         List<User> QueryAllUser();
 
         User UpdateUser(User user);
+
+        User QueryUserByUserName(string name);
     }
 }

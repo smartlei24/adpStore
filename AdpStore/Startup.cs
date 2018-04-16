@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using AdpStore.Models;
 using VIC.DataAccess.MSSql;
 using System.IO;
 using VIC.DataAccess.Config;
 using AdpStore.Dao;
-using VIC.DataAccess.Abstraction;
-using VIC.ObjectConfig.Abstraction;
-using VIC.ObjectConfig.Merge;
+using AdpStore.Biz;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace AdpStore
 {
@@ -39,12 +33,20 @@ namespace AdpStore
             services.AddMvc();
 
             services.UseDataAccess()
-                .UseDataAccessConfig(dbDirectory, false, null, "db.Development.xml", "Product.xml")
+                .UseDataAccessConfig(dbDirectory, false, null, "db.Development.xml", "Product.xml", "User.xml", "ShoppingCart.xml", "Order.xml")
                 .BuildServiceProvider();
 
             services
-                .AddSingleton<IProductDao, ProductDao>();
+                .AddSingleton<IProductDao, ProductDao>()
+                .AddSingleton<IUserBiz, UserBiz>()
+                .AddSingleton<IUserDao, UserDao>();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = new PathString("/login");
+                    option.AccessDeniedPath = new PathString("/denied");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +63,8 @@ namespace AdpStore
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

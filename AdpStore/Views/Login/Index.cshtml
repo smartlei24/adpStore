@@ -1,4 +1,5 @@
-﻿
+﻿@model User
+
 @{
     ViewData["Title"] = "登陆";
 }
@@ -8,25 +9,39 @@
         <h1>Account</h1>
         <div class="account-pass">
             <div class="col-md-8 account-top">
-                <form>
+                @if (string.IsNullOrEmpty(User.Identity.Name))
+                {
+                    <form asp-controller="Login" asp-action="Index" method="post">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group has-feedback">
+                            <span>用户名</span>
+                            <input type="text" asp-for="Name" placeholder="用户名">
+                            <span class="glyphicon glyphicon-user form-control-feedback">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <span>密码</span>
+                            <input type="password" asp-for="Password" placeholder="密码">
+                            <span class="glyphicon glyphicon-user form-control-feedback">
+                        </div>
+                        <input type="submit" asp-controller="Login" asp-action="login" value="登录">
+                    </form>
+                }
+                else
+                {
+                    <div class="form-group has-feedback" style="color:brown; text-align:center; ">
+                        <h3>您已登陆，请到其他页面看看吧~~</h3>
+                    </div>
 
-                    <div>
-                        <span>Email</span>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <span>Password</span>
-                        <input type="password">
-                    </div>
-                    <input type="submit" value="Login">
-                </form>
+                }
             </div>
             <div class="col-md-4 left-account ">
                 <a href="single.html"><img class="img-responsive " src="images/s1.jpg" alt=""></a>
                 <div class="five">
                     <h2>25% </h2><span>discount</span>
                 </div>
-                <a href="register.html" class="create">Create an account</a>
+                <a href="~/register" class="create">注册新账号</a>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
