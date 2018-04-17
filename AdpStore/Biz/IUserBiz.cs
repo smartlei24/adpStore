@@ -14,7 +14,7 @@ namespace AdpStore.Biz
 
         User UpdateUser(User user);
 
-        User AddNewUser(User user);
+        bool AddNewUser(User user);
 
         bool DeleteUserById(int id);
 

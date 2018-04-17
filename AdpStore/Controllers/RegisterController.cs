@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdpStore.Controllers
 {
-    [Route("register")]
+    [Route("register/")]
     public class RegisterController : Controller
     {
         private IUserBiz biz;
@@ -23,11 +23,16 @@ namespace AdpStore.Controllers
             return View();
         }
 
-        [HttpPost()]
+        [Route("new")]
         public async Task<IActionResult> RigisterNewUser(User newUser)
         {
-            var user = this.biz.AddNewUser(newUser);
-            return View("Index", user);
+            var isSuccess = this.biz.AddNewUser(newUser);
+            if (!isSuccess)
+            {
+                ModelState.AddModelError("", "用户名已存在，请尝试其他用户名");
+                return View("Index");
+            }
+            return Redirect("/login");
         }
     }
 }

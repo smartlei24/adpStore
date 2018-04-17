@@ -16,9 +16,9 @@ namespace AdpStore.Dao
             _db = db;
         }
 
-        public User AddNewUser(User user)
+        public void AddNewUser(User user)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("AddANewUser").ExecuteScalar<User>(user);
         }
 
         public bool DeleteUserById(int id)

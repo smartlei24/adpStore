@@ -16,7 +16,11 @@ namespace AdpStore.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public string Address { get; set; }
+
         public string EmailAddress { get; set; }
+
+        public string TelNumber { get; set; }
 
         public DateTime Indate { get; set; }
     }

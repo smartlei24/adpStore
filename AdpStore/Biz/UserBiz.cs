@@ -16,9 +16,16 @@ namespace AdpStore.Biz
             this.dao = dao;
         }
 
-        public User AddNewUser(User user)
+        public bool AddNewUser(User user)
         {
-            throw new NotImplementedException();
+            var queryUser = this.dao.QueryUserByUserName(user.Name);
+            if (queryUser == null)
+            {
+                this.dao.AddNewUser(user);
+                return true;
+            }
+
+            return false;
         }
 
         public bool CheckUserIsExist(User user)

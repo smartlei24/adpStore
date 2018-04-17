@@ -8,7 +8,7 @@ namespace AdpStore.Dao
 {
     public interface IUserDao
     {
-        User AddNewUser(User user);
+        void AddNewUser(User user);
 
         bool DeleteUserById(int id);
 

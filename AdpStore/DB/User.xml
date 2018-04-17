@@ -67,7 +67,7 @@
         INSERT INTO dbo.[User] 
         (Name, PassWord, EmailAddress, TelNumber, Address) 
         VALUES
-        (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
+        (@Name, @Password, @EmailAddress, @TelNumber, @Address)
       ]]>
       </Text>
     </DbSql>
