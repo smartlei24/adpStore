@@ -10,13 +10,13 @@ namespace AdpStore.Biz
     {
         Product QueryProductDetail(int productId);
 
-        List<Product> QueryAllProducts();
+        QueryProductResult QueryAllProducts();
 
-        List<Product> QueryProductByProductName(string productName);
+        QueryProductResult QueryProductByProductName(string productName, int pageNumber);
 
-        List<Product> QueryProductByProductStyle(string style);
+        QueryProductResult QueryProductByProductStyle(string style);
 
-        List<Product> QueryProductsBySituation(string situation);
+        QueryProductResult QueryProductsBySituation(string situation);
 
         bool AddNewProduct(Product newProduct);
 

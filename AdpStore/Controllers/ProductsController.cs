@@ -28,10 +28,12 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet("name/{name}")]
-        public async Task<IActionResult> QueryProductByName(string name)
+        public async Task<IActionResult> QueryProductByName(string name, int pageNumber)
         {
-            var products = this.biz.QueryProductByProductName(name);
-            return View("Index", products);
+            var result = this.biz.QueryProductByProductName(name, pageNumber);
+            result.RedirectUrl = "~/name/";
+
+            return View("Index", result);
         }
 
         [HttpGet("style/{style}")]

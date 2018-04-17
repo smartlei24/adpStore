@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SqlConfigs>
+    <DbSql CommandName="QueryCountByProductStyle" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+          COUNT(1)
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Style=@Style
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
     <DbSql CommandName="QueryProductByProductStyle" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
@@ -23,6 +36,19 @@
         <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
       </PreParameters>
     </DbSql>
+    <DbSql CommandName="QueryCountOfAllProducts" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+          COUNT(1)
+        FROM dbo.Product WITH(NOLOCK)
+      ]]>
+      </Text>
+      <PreParameters>
+        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+      </PreParameters>
+    </DbSql>
+    
     <DbSql CommandName="QueryAllProducts" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
@@ -40,8 +66,18 @@
         OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
       ]]>
       </Text>
+    </DbSql>
+    <DbSql CommandName="QueryCountOfProductByProductSituation" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+          COUNT(1)
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Situation=@Situation
+      ]]>
+      </Text>
       <PreParameters>
-        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
+        <Parameter Name="@Situation" Direction="Input" Type="AnsiString" />
       </PreParameters>
     </DbSql>
     <DbSql CommandName="QueryProductByProductSituation" Type="Text" ConnectionName="Test">
@@ -66,6 +102,16 @@
         <Parameter Name="@Situation" Direction="Input" Type="AnsiString" />
       </PreParameters>
     </DbSql>
+    <DbSql CommandName="QueryCountOfProductByProductName" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT
+          COUNT(1)
+        FROM dbo.Product WITH(NOLOCK)
+        WHERE Name like @productName+'%'
+      ]]>
+      </Text>
+    </DbSql>
     <DbSql CommandName="QueryProductByProductName" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
@@ -84,9 +130,6 @@
         OFFSET @PageStart FETCH NEXT @PageSize ROW ONLY
       ]]>
       </Text>
-      <PreParameters>
-        <Parameter Name="@Style" Direction="Input" Type="AnsiString" />
-      </PreParameters>
     </DbSql>
     <DbSql CommandName="InsertANewProduct" Type="Text" ConnectionName="Test">
       <Text>

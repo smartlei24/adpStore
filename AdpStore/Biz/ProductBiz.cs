@@ -11,6 +11,8 @@ namespace AdpStore.Biz
     {
         private IProductDao dao;
 
+        private int pageSize = 6;
+
         public ProductBiz(IProductDao dao)
         {
             this.dao = dao;
@@ -26,17 +28,29 @@ namespace AdpStore.Biz
             throw new NotImplementedException();
         }
 
-        public List<Product> QueryAllProducts()
+        public QueryProductResult QueryAllProducts()
         {
             throw new NotImplementedException();
         }
 
-        public List<Product> QueryProductByProductName(string productName)
+        public QueryProductResult QueryProductByProductName(string productName, int pageNumber)
         {
-            throw new NotImplementedException();
+            var pageStart = (pageNumber - 1) * this.pageSize;
+
+            var dataCount = this.dao.QueryCountOfProductByProductName(productName);
+            int pageCount = (int)Math.Ceiling(dataCount / (pageSize * 1.0));
+
+            var products = this.dao.QueryProductByProductName(productName, pageStart, pageSize);
+
+            var queryResult = new QueryProductResult
+            {
+                DataCount = dataCount,
+                Data = products
+            };
+            return queryResult;
         }
 
-        public List<Product> QueryProductByProductStyle(string style)
+        public QueryProductResult QueryProductByProductStyle(string style)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +60,7 @@ namespace AdpStore.Biz
             throw new NotImplementedException();
         }
 
-        public List<Product> QueryProductsBySituation(string situation)
+        public QueryProductResult QueryProductsBySituation(string situation)
         {
             throw new NotImplementedException();
         }
