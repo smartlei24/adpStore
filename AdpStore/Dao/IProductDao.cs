@@ -8,21 +8,14 @@ namespace AdpStore.Dao
 {
     public interface IProductDao
     {
-        int QueryCountOfAllProducts();
 
-        List<Product> QueryAllProducts(int pageStart, int pageSize);
+        List<Product> QueryAllProducts();
 
-        int QueryCountOfProductByProductName(string productName);
+        List<Product> QueryProductByProductName(string productName);
 
-        List<Product> QueryProductByProductName(string productName, int pageStart, int pageSize);
+        List<Product> QueryProductByProductStyle(string style);
 
-        int QueryCountOfProductByProductStyle(string style);
-
-        List<Product> QueryProductByProductStyle(string style, int pageStart, int pageSize);
-
-        int QueryCountOfProductBySituation(string situation);
-
-        List<Product> QueryProductBySituation(string situation, int pageStart, int pageSize); 
+        List<Product> QueryProductBySituation(string situation); 
 
         Product QueryProductDetail(int productId);
 

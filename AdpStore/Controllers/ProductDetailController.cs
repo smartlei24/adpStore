@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdpStore.Controllers
 {
-    [Route("product-detail")]
     public class ProductDetailController : Controller
     {
         private IProductBiz biz;
@@ -17,7 +16,7 @@ namespace AdpStore.Controllers
             this.biz = _biz;
         }
 
-        [HttpGet("product/{id}")]
+        [HttpGet("product-detail/{id}")]
         public async Task<IActionResult> GetProductDetailById(int id)
         {
             var product = this.biz.QueryProductDetail(id);

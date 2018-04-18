@@ -20,6 +20,6 @@ namespace AdpStore.Models
 
         public string Situation { get; set; }
 
-        public string Indate { get; set; }
+        public DateTime Indate { get; set; }
     }
 }

@@ -21,33 +21,31 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet()]
-        public async Task<IActionResult> QueryAllProduct()
+        public async Task<IActionResult> QueryAllProduct(int? page)
         {
             var products = this.biz.QueryAllProducts();
-            return View("Index", products);
+            return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
         [HttpGet("name/{name}")]
-        public async Task<IActionResult> QueryProductByName(string name, int pageNumber)
+        public async Task<IActionResult> QueryProductByName(string name, string currentFilter, string searchString, int? page)
         {
-            var result = this.biz.QueryProductByProductName(name, pageNumber);
-            result.RedirectUrl = "~/name/";
-
-            return View("Index", result);
+            var products = this.biz.QueryProductByProductName(name);
+            return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
         [HttpGet("style/{style}")]
-        public async Task<IActionResult> QueryProductByProductStyle(string style)
+        public async Task<IActionResult> QueryProductByProductStyle(string style, int? page)
         {
             var products = this.biz.QueryProductByProductStyle(style);
-            return View("Index", products);
+            return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
         [HttpGet("situation/{situation}")]
-        public async Task<IActionResult> QueryProductsBySituation(string situation)
+        public async Task<IActionResult> QueryProductsBySituation(string situation, int? page)
         {
             var products = this.biz.QueryProductsBySituation(situation);
-            return View("Index", products);
+            return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
         [HttpPut("product")]

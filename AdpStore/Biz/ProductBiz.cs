@@ -11,8 +11,6 @@ namespace AdpStore.Biz
     {
         private IProductDao dao;
 
-        private int pageSize = 6;
-
         public ProductBiz(IProductDao dao)
         {
             this.dao = dao;
@@ -28,41 +26,31 @@ namespace AdpStore.Biz
             throw new NotImplementedException();
         }
 
-        public QueryProductResult QueryAllProducts()
+        public List<Product> QueryAllProducts()
         {
-            throw new NotImplementedException();
+            return this.dao.QueryAllProducts();
         }
 
-        public QueryProductResult QueryProductByProductName(string productName, int pageNumber)
+        public List<Product> QueryProductByProductName(string productName)
         {
-            var pageStart = (pageNumber - 1) * this.pageSize;
-
-            var dataCount = this.dao.QueryCountOfProductByProductName(productName);
-            int pageCount = (int)Math.Ceiling(dataCount / (pageSize * 1.0));
-
-            var products = this.dao.QueryProductByProductName(productName, pageStart, pageSize);
-
-            var queryResult = new QueryProductResult
-            {
-                DataCount = dataCount,
-                Data = products
-            };
-            return queryResult;
+            var products = this.dao.QueryProductByProductName(productName);
+            return products;
         }
 
-        public QueryProductResult QueryProductByProductStyle(string style)
+        public List<Product> QueryProductByProductStyle(string style)
         {
-            throw new NotImplementedException();
+            var products = this.dao.QueryProductByProductStyle(style);
+            return products;
         }
 
         public Product QueryProductDetail(int productId)
         {
-            throw new NotImplementedException();
+            return this.dao.QueryProductDetail(productId);
         }
 
-        public QueryProductResult QueryProductsBySituation(string situation)
+        public List<Product> QueryProductsBySituation(string situation)
         {
-            throw new NotImplementedException();
+            return this.dao.QueryProductBySituation(situation);
         }
 
         public Product UpdateProduct(Product product)

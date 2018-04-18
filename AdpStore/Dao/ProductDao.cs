@@ -26,76 +26,44 @@ namespace AdpStore.Dao
             throw new NotImplementedException();
         }
 
-        public List<Product> QueryAllProducts(int pageStart, int pageSize)
+        public List<Product> QueryAllProducts()
         {
             return this._db.GetCommand("QueryAllProducts")
-                .ExecuteEntityList<Product>(new
-                {
-                    PageStart = pageStart,
-                    PageSize = pageSize
-                });
+                .ExecuteEntityList<Product>();
         }
 
-        public int QueryCountOfAllProducts()
+        public List<Product> QueryProductByProductName(string productName)
         {
-            return this._db.GetCommand("QueryAllProducts")
-                .ExecuteScalar<int>();
-        }
-
-
-        public int QueryCountOfProductByProductStyle(string style)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int QueryCountOfProductBySituation(string situation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Product> QueryProductByProductName(string productName, int pageStart, int pageSize)
-        {
-            return this._db.GetCommand("QueryProductByProductName")
-                .ExecuteEntityList<Product>(new
-                {
-                    ProductName = productName,
-                    PageStart = pageStart,
-                    PageSize = pageSize
-                });
-        }
-
-        public int QueryCountOfProductByProductName(string productName)
-        {
-            return this._db.GetCommand("QueryCountOfProductByProductName")
-                .ExecuteScalar<int>(new
+            var a = this._db.GetCommand("QueryProductByProductName");
+            var b = a.ExecuteEntityList<Product>(new
                 {
                     ProductName = productName
                 });
+            return b;
         }
 
-        public List<Product> QueryProductByProductStyle(string style, int pageStart, int pageSize)
+        public List<Product> QueryProductByProductStyle(string style)
         {
             return this._db.GetCommand("QueryProductByProductStyle").ExecuteEntityList<Product>(new
             {
-                Style = style,
-                PageStart = pageStart,
-                PageSize = pageSize
+                Style = style
             });
         }
 
-        public List<Product> QueryProductBySituation(string situation, int pageStart, int pageSize)
+        public List<Product> QueryProductBySituation(string situation)
         {
             return this._db.GetCommand("QueryProductBySituation").ExecuteEntityList<Product>(new
             {
-                Situation = situation,
-                PageStart = pageStart,
-                PageSize = pageSize
+                Situation = situation
             });
         }
 
         public Product QueryProductDetail(int productId)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("QueryProductById").ExecuteEntity<Product>(new
+            {
+                ProductId = productId
+            });
         }
 
         public Product UpdateProduct(Product product)
