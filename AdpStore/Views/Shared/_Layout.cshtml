@@ -25,8 +25,8 @@
         <div class="header-top">
             <div class="container">
                 <div class="search">
-                    <form>
-                        <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <form asp-controller="product" asp-action="name" method="get">
+                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
                         <input type="submit" value="Go">
                     </form>
                 </div>
@@ -40,7 +40,7 @@
                         <li>
                             <a asp-controller="Login" asp-action="Logout">登出</a>
                         </li>
-                }
+                    }
                 else
                 {
                     <li>

@@ -32,13 +32,13 @@
                     <a href="#">不同场合 </a>
                     <ul class="cute">
                         <li class="subitem1">
-                            <a href="single.html">聚会&年会 </a>
+                            <a href="~/situation/聚会">聚会&年会 </a>
                         </li>
                         <li class="subitem2">
-                            <a href="single.html">面试 </a>
+                            <a href="~/situation/面试">面试 </a>
                         </li>
                         <li class="subitem3">
-                            <a href="single.html">户外娱乐 </a>
+                            <a href="~/situation/户外娱乐">户外娱乐 </a>
                         </li>
                     </ul>
                 </li>
@@ -46,16 +46,16 @@
                     <a href="#">不同风格 </a>
                     <ul class="cute">
                         <li class="subitem1">
-                            <a href="single.html">职业风 </a>
+                            <a href="~/style/职业">职业风 </a>
                         </li>
                         <li class="subitem2">
-                            <a href="single.html">休闲风 </a>
+                            <a href="~/style/休闲">休闲风 </a>
                         </li>
                         <li class="subitem3">
-                            <a href="single.html">运动风</a>
+                            <a href="~/style/运动">运动风</a>
                         </li>
                         <li class="subitem4">
-                            <a href="single.html">淑女风</a>
+                            <a href="~/style/淑女">淑女风</a>
                         </li>
                     </ul>
                 </li>
@@ -151,7 +151,7 @@
     </div>
     <div class="col-md-9 product1">
         <div class=" bottom-product">
-            @if (Model.Count() >= 0)
+            @if (Model.Count() > 0)
             {
                 @foreach (var item in Model)
                 {
