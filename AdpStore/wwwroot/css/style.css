@@ -95,7 +95,7 @@ a.item_add {
   color: #000; 
    font-weight: 700; 	
 }
-.search input[type="submit"] {	
+.search input[type="button"] {	
 	border: none;
 	cursor: pointer;
 	position: absolute;
@@ -108,15 +108,15 @@ a.item_add {
   padding: 3px;
   font-weight: 700;
 }
-.search input[type="submit"]:hover {
-  background: #EF5F21;  
-  color: #fff;
-    transition: 0.5s all;
-  -webkit-transition: 0.5s all;
-  -o-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-}
+    .search input[type="button"]:hover {
+        background: #EF5F21;
+        color: #fff;
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+    }
 .header-left{
 	float: right;
 	  margin-top: 4px;

@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdpStore.Models;
+using VIC.DataAccess.Abstraction;
 
 namespace AdpStore.Dao
 {
     public class ShoppingCartDao : IShoppingCartDao
     {
-        public void AddShoppingCart(ShoppingCart shoppingCart)
+        private IDbManager _db;
+
+        public ShoppingCartDao(IDbManager db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
 
-        public void DeleteAllShoppingCartByUserId(User userId)
+        public void AddShoppingCart(ShoppingCart shoppingCart)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("AddANewShopingCart").ExecuteNonQuery(shoppingCart);
+        }
+
+        public void DeleteAllShoppingCartByUserName(User userId)
+        {
+            this._db.GetCommand("DeleteAllShoppingCartByUserName").ExecuteNonQuery(new
+            {
+                UserId = userId
+            });
         }
 
         public void DeleteShoppingCartById(int id)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("QueryShoppingCartByUserName").ExecuteNonQuery(new
+            {
+                ShoppingId = id
+            });
         }
 
-        public List<ShoppingCart> QueryShoppingCartByUserId(int id)
+        public List<ShoppingCart> QueryShoppingCartByUserName (int id)
         {
             throw new NotImplementedException();
         }

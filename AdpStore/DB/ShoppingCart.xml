@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SqlConfigs>
-    <DbSql CommandName="QueryShoppingCartByUserId" Type="Text" ConnectionName="Test">
+    <DbSql CommandName="QueryShoppingCartByUserName" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
         SELECT 
             ShoppingId,
             ProductId,
-            UserId,
+            UserName,
             Indate
         From dbo.ShoppingCart WITH(NOLOCK)
-        WHERE UserId=@UserId
+        WHERE UserName=@UserName
       ]]>
       </Text>
     </DbSql>
     <DbSql CommandName="AddANewShopingCart" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        INSERT INTO dbo.ShoppingCart (ProductId, UserId) VALUES(@ProductId, @UserId)
+        INSERT INTO dbo.ShoppingCart (ProductId, UserName) VALUES(@ProductId, @UserName)
       ]]>
       </Text>
     </DbSql>
@@ -28,10 +28,10 @@
       ]]>
       </Text>
     </DbSql>
-    <DbSql CommandName="DeleteAllShoppingCartByUserId" Type="Text" ConnectionName="Test">
+    <DbSql CommandName="DeleteAllShoppingCartByUserName" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        DELETE FROM dbo.ShoppingCart WHERE UserId=@UserId
+        DELETE FROM dbo.ShoppingCart WHERE UserName=@UserName
       ]]>
       </Text>
     </DbSql>

@@ -27,7 +27,7 @@ namespace AdpStore.Controllers
             return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
-        [HttpGet("name/")]
+        [HttpGet("name/{name}")]
         public async Task<IActionResult> QueryProductByName(string name, string currentFilter, string searchString, int? page)
         {
             var products = this.biz.QueryProductByProductName(name);

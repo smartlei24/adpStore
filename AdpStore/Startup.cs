@@ -40,7 +40,9 @@ namespace AdpStore
                 .AddSingleton<IProductDao, ProductDao>()
                 .AddSingleton<IUserBiz, UserBiz>()
                 .AddSingleton<IUserDao, UserDao>()
-                .AddSingleton<IProductBiz, ProductBiz>();
+                .AddSingleton<IProductBiz, ProductBiz>()
+                .AddSingleton<IShoppingCartBiz, ShoppingCartBiz>()
+                .AddSingleton<IShoppingCartDao, ShoppingCartDao>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option =>

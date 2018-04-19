@@ -8,12 +8,12 @@ namespace AdpStore.Biz
 {
     public interface IShoppingCartBiz
     {
-        List<ShoppingCart> QueryShoppingCartByUserId(int id);
+        List<ShoppingCart> QueryShoppingCartByUserName(string userName);
 
         void AddShoppingCart(ShoppingCart shoppingCart);
 
         void DeleteShoppingCartById(int id);
 
-        void EmptyUserShoppingCart(int userId);
+        void EmptyUserShoppingCart(string userName);
     }
 }

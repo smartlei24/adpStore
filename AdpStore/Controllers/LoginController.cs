@@ -33,7 +33,7 @@ namespace AdpStore.Controllers
             if (isExist)
             {
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-                identity.AddClaim(new Claim(ClaimTypes.Sid, user.Name));
+                identity.AddClaim(new Claim(ClaimTypes.Sid, user.ID.ToString()));
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 return Redirect("/");

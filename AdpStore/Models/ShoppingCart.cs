@@ -10,7 +10,7 @@ namespace AdpStore.Models
 
         public int ProductId { get; set; }
 
-        public int UserId { get; set; }
+        public string UserName { get; set; }
 
         public DateTime InDate { get; set; }
     }

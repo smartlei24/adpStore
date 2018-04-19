@@ -18,22 +18,22 @@ namespace AdpStore.Biz
 
         public void AddShoppingCart(ShoppingCart shoppingCart)
         {
-            throw new NotImplementedException();
+            this.dao.AddShoppingCart(shoppingCart);
         }
 
         public void DeleteShoppingCartById(int id)
         {
-            throw new NotImplementedException();
+            this.DeleteShoppingCartById(id);
         }
 
-        public void EmptyUserShoppingCart(int userId)
+        public void EmptyUserShoppingCart(string userId)
         {
-            throw new NotImplementedException();
+            this.EmptyUserShoppingCart(userId);
         }
 
-        public List<ShoppingCart> QueryShoppingCartByUserId(int id)
+        public List<ShoppingCart> QueryShoppingCartByUserName(string id)
         {
-            throw new NotImplementedException();
+            return this.QueryShoppingCartByUserName(id);
         }
     }
 }

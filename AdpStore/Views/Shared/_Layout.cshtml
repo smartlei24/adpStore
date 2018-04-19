@@ -25,31 +25,31 @@
         <div class="header-top">
             <div class="container">
                 <div class="search">
-                    <form asp-controller="product" asp-action="name" method="get">
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-                        <input type="submit" value="Go">
+                    <form>
+                        <input id="searchInput" type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="button" onclick="searchByName()" value="Go">
                     </form>
                 </div>
                 <div class="header-left">
                     <ul>
                         @if (!string.IsNullOrEmpty(@User.Identity.Name))
-                    {
-                        <li>
-                            <a href="#">@User.Identity.Name</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Login" asp-action="Logout">登出</a>
-                        </li>
-                    }
-                else
-                {
-                    <li>
-                        <a href="~/login">登录</a>
-                    </li>
-                    <li>
-                        <a href="~/register">注册</a>
-                    </li>
-            }
+                        {
+                            <li>
+                                <a href="#">@User.Identity.Name</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Login" asp-action="Logout">登出</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="~/login">登录</a>
+                            </li>
+                            <li>
+                                <a href="~/register">注册</a>
+                            </li>
+                        }
                     </ul>
                     <div class="cart box_1">
                         <a href="~/shopping-cart">
@@ -85,7 +85,7 @@
                             <a class="color8" href="~/">首页</a>
                         </li>
                         <li>
-                            <a class="color1" href="javascript:void(0);" >不同场合</a>
+                            <a class="color1" href="javascript:void(0);">不同场合</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1">
@@ -93,7 +93,7 @@
                                             <h4>Popular Occasion</h4>
                                             <ul>
                                                 <li>
-                                                    <a href="~/product">聚会</a>
+                                                    <a href="~/product/style/聚会">聚会</a>
                                                 </li>
                                                 <li>
                                                     <a href="~/product">面试</a>
@@ -108,7 +108,7 @@
                             </div>
                         </li>
                         <li class="grid">
-                            <a class="color2" href="javascript:void(0);" > 不同风格</a>
+                            <a class="color2" href="javascript:void(0);"> 不同风格</a>
                             <div class="mepanel">
                                 <div class="row">
                                     <div class="col1">
@@ -116,7 +116,7 @@
                                             <h4>Popular Style</h4>
                                             <ul>
                                                 <li>
-                                                    <a href="~/product">淑女风</a>
+                                                    <a href="~/product/style/淑女">淑女风</a>
                                                 </li>
                                                 <li>
                                                     <a href="~/product">休闲风</a>
@@ -236,6 +236,15 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
     </environment>
+
+    <script>
+        function searchByName() {
+            var value = $('#searchInput').val();
+            if (value != "Search") {
+                window.location.href = "/product/name/" + value;
+            }
+        }
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

@@ -19,17 +19,18 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet("/{userId}")]
-        public async Task<IActionResult> GetUsersShoppingCart(int userId)
+        public async Task<IActionResult> GetUsersShoppingCart(string userName)
         {
-            var records = this.biz.QueryShoppingCartByUserId(userId);
+            var records = this.biz.QueryShoppingCartByUserName(userName);
             return View("Index", records);
         }
 
         [HttpPost()]
-        public async Task<IActionResult> AddShoppingCart(ShoppingCart shoppingCart)
+        public async Task<IActionResult> AddShoppingCart(string userName, int productId)
         {
+            var shoppingCart = new ShoppingCart { UserName = userName, ProductId = productId };
             this.biz.AddShoppingCart(shoppingCart);
-            var records = this.biz.QueryShoppingCartByUserId(shoppingCart.UserId);
+            var records = this.biz.QueryShoppingCartByUserName(shoppingCart.UserName);
             return View("Index", records);
         }
 
@@ -37,15 +38,15 @@ namespace AdpStore.Controllers
         public async Task<IActionResult> DeleteShoppingCart(ShoppingCart shoppingCart)
         {
             this.biz.AddShoppingCart(shoppingCart);
-            var records = this.biz.QueryShoppingCartByUserId(shoppingCart.UserId);
+            var records = this.biz.QueryShoppingCartByUserName(shoppingCart.UserName);
             return View("Index", records);
         }
 
         [HttpDelete("/{userId}")]
-        public async Task<IActionResult> EmptyShoppingCart(int userId)
+        public async Task<IActionResult> EmptyShoppingCart(string userName)
         {
-            this.biz.EmptyUserShoppingCart(userId);
-            var records = this.biz.QueryShoppingCartByUserId(userId);
+            this.biz.EmptyUserShoppingCart(userName);
+            var records = this.biz.QueryShoppingCartByUserName(userName);
             return View("Index", records);
         }
     }

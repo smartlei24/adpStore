@@ -41,3 +41,26 @@ CREATE TABLE dbo.[Order]
     OrderPrice INT NOT NULL,
     Indate DATETIME DEFAULT GETDATE()
 )
+
+-- 修改UserName为查询条件
+DROP TABLE dbo.[ShoppingCart]
+
+CREATE TABLE dbo.[ShoppingCart]
+(
+    ShoppingId INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
+    ProductId INT NOT NULL,
+    UserName NVARCHAR(30) NOT NULL,
+    Indate DATETIME DEFAULT GETDATE()
+)
+
+DROP TABLE dbo.[Order]
+
+CREATE TABLE dbo.[Order]
+(
+    OrderId INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
+    UserName NVARCHAR(30) NOT NULL,
+    ProductId INT NOT NULL,
+    Quantity INT NOT NULL,
+    OrderPrice INT NOT NULL,
+    Indate DATETIME DEFAULT GETDATE()
+)
