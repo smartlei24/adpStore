@@ -28,12 +28,12 @@ namespace AdpStore.Biz
 
         public void EmptyUserShoppingCart(string userId)
         {
-            this.EmptyUserShoppingCart(userId);
+            this.dao.DeleteAllShoppingCartByUserName(userId);
         }
 
-        public List<ShoppingCart> QueryShoppingCartByUserName(string id)
+        public List<ShoppingCart> QueryShoppingCartByUserName(string name)
         {
-            return this.QueryShoppingCartByUserName(id);
+            return this.dao.QueryShoppingCartByUserName(name);
         }
     }
 }

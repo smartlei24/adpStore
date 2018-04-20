@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdpStore.Controllers
 {
-    [Route("shopping-cart")]
+    [Route("shopping-cart/")]
     public class ShoppingCartController : Controller
     {
         private IShoppingCartBiz biz;
@@ -18,7 +18,7 @@ namespace AdpStore.Controllers
             this.biz = biz;
         }
 
-        [HttpGet("/{userId}")]
+        [HttpGet("{userName}")]
         public async Task<IActionResult> GetUsersShoppingCart(string userName)
         {
             var records = this.biz.QueryShoppingCartByUserName(userName);
@@ -26,12 +26,11 @@ namespace AdpStore.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> AddShoppingCart(string userName, int productId)
+        public void AddShoppingCart(string userName, int productId)
         {
             var shoppingCart = new ShoppingCart { UserName = userName, ProductId = productId };
             this.biz.AddShoppingCart(shoppingCart);
-            var records = this.biz.QueryShoppingCartByUserName(shoppingCart.UserName);
-            return View("Index", records);
+            return;
         }
 
         [HttpDelete()]
@@ -42,12 +41,11 @@ namespace AdpStore.Controllers
             return View("Index", records);
         }
 
-        [HttpDelete("/{userId}")]
-        public async Task<IActionResult> EmptyShoppingCart(string userName)
+        [HttpDelete("{userId}")]
+        public void EmptyShoppingCart(string userName)
         {
             this.biz.EmptyUserShoppingCart(userName);
-            var records = this.biz.QueryShoppingCartByUserName(userName);
-            return View("Index", records);
+            return;
         }
     }
 }

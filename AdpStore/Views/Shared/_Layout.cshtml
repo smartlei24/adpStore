@@ -18,6 +18,7 @@
         <script src="~/js/memenu.js"></script>
         <script src="~/js/responsiveslides.min.js"></script>
         <script src="~/js/simpleCart.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
     </environment>
 </head>
 <body>
@@ -52,7 +53,7 @@
                         }
                     </ul>
                     <div class="cart box_1">
-                        <a href="~/shopping-cart">
+                        <a href="javascript:void(0);" id="click-cart">
                             <h3>
                                 <div class="total">
                                     <span class="simpleCart_total"></span> (
@@ -62,7 +63,7 @@
                             </h3>
                         </a>
                         <p>
-                            <a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
+                            <a id="empty-cart" href="javascript:void(0);">Empty Cart</a>
                         </p>
 
                     </div>
@@ -71,6 +72,25 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <script>
+            $('#empty-cart').on("click", function (e) {
+                e.preventDefault();
+                if ("@User.Identity.Name" != "") {
+                    $.ajax({
+                        url: '/shopping-cart/@User.Identity.Name',
+                        type: 'DELETE',
+                        data: { userName: "@User.Identity.Name" }
+                    })
+                }
+            });
+
+            $('#click-cart').on("click", function (e) {
+                e.preventDefault();
+                if ("@User.Identity.Name" != "") {
+                    window.location.href = "/shopping-cart/@User.Identity.Name";
+                }
+            });
+        </script>
         <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
         <div class="container">
             <div class="head-top">

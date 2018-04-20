@@ -8,12 +8,12 @@ namespace AdpStore.Dao
 {
     public interface IShoppingCartDao
     {
-        List<ShoppingCart> QueryShoppingCartByUserName(int id);
+        List<ShoppingCart> QueryShoppingCartByUserName(string name);
 
         void AddShoppingCart(ShoppingCart shoppingCart);
 
         void DeleteShoppingCartById(int id);
 
-        void DeleteAllShoppingCartByUserName(User userId);
+        void DeleteAllShoppingCartByUserName(string userId);
     }
 }

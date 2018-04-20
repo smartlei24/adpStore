@@ -163,6 +163,7 @@
                     });
                 </script>
             </div>
+
             <div class="col-md-7 single-top-in simpleCart_shelfItem">
                 <div class="single-para ">
                     <h4>@Model.Name</h4>
@@ -236,14 +237,6 @@
             </div>
             <div class="clearfix"> </div>
             <!---->
-            <script>
-                $(function () {
-                    $("#add-to-shopping-cart").on("click", function (e) {
-                        e.preventDefault();
-                        $.post("/shopping-cart", { productId: @Model.ProductId, userName: "@User.Identity.Name" })
-                    });
-                });
-            </script>
 
             <div class="cd-tabs">
                 <nav>
@@ -359,3 +352,21 @@
     </div>
 </div>
 
+<script>
+   $(function () {
+       $("#add-to-shopping-cart").on("click", function (e) {
+           e.preventDefault();
+           if ("@User.Identity.Name" != "") {
+               $.post("/shopping-cart", { productId: @Model.ProductId, userName: "@User.Identity.Name" }, function () { 
+                   alert("添加成功！");
+               })
+           }
+           else {
+               setTimeout(() => {
+                   window.location.href = "/login";
+               }, 300);
+               alert("再好看也要先登陆哦~");
+           };
+       });
+   });
+</script>

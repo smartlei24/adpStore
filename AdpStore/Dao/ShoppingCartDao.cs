@@ -21,11 +21,11 @@ namespace AdpStore.Dao
             this._db.GetCommand("AddANewShopingCart").ExecuteNonQuery(shoppingCart);
         }
 
-        public void DeleteAllShoppingCartByUserName(User userId)
+        public void DeleteAllShoppingCartByUserName(string userName)
         {
             this._db.GetCommand("DeleteAllShoppingCartByUserName").ExecuteNonQuery(new
             {
-                UserId = userId
+                UserName = userName
             });
         }
 
@@ -37,9 +37,13 @@ namespace AdpStore.Dao
             });
         }
 
-        public List<ShoppingCart> QueryShoppingCartByUserName (int id)
+        public List<ShoppingCart> QueryShoppingCartByUserName(string name)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("QueryShoppingCartByUserName")
+                .ExecuteEntityList<ShoppingCart>(new
+                {
+                    UserName = name
+                });
         }
     }
 }
