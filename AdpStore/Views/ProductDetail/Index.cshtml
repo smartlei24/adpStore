@@ -48,23 +48,23 @@
             </div>
             <!--initiate accordion-->
             <script type="text/javascript">
-					$(function () {
-						var menu_ul = $('.menu > li > ul'),
-							menu_a = $('.menu > li > a');
-						menu_ul.hide();
-						menu_a.click(function (e) {
-							e.preventDefault();
-							if (!$(this).hasClass('active')) {
-								menu_a.removeClass('active');
-								menu_ul.filter(':visible').slideUp('normal');
-								$(this).addClass('active').next().stop(true, true).slideDown('normal');
-							} else {
-								$(this).removeClass('active');
-								$(this).next().stop(true, true).slideUp('normal');
-							}
-						});
+                $(function () {
+                    var menu_ul = $('.menu > li > ul'),
+                        menu_a = $('.menu > li > a');
+                    menu_ul.hide();
+                    menu_a.click(function (e) {
+                        e.preventDefault();
+                        if (!$(this).hasClass('active')) {
+                            menu_a.removeClass('active');
+                            menu_ul.filter(':visible').slideUp('normal');
+                            $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                        } else {
+                            $(this).removeClass('active');
+                            $(this).next().stop(true, true).slideUp('normal');
+                        }
+                    });
 
-					});
+                });
             </script>
             <!---->
             <div class="product-middle">
@@ -154,13 +154,13 @@
                 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
                 <script>
-						// Can also be used with $(document).ready()
-						$(window).load(function () {
-							$('.flexslider').flexslider({
-								animation: "slide",
-								controlNav: "thumbnails"
-							});
-						});
+                    // Can also be used with $(document).ready()
+                    $(window).load(function () {
+                        $('.flexslider').flexslider({
+                            animation: "slide",
+                            controlNav: "thumbnails"
+                        });
+                    });
                 </script>
             </div>
             <div class="col-md-7 single-top-in simpleCart_shelfItem">
@@ -231,12 +231,20 @@
                         </ul>
                     </div>
 
-                    <a  asp-controller="shopping-cart" asp-action="AddShoppingCart" asp-route-userId ="@User.Identity.Name" asp-route-productId="@Model.ProductId"  class="add-cart item_add">加入购物车</a>
-
+                    <a id="add-to-shopping-cart" class="add-cart item_add">加入购物车</a>
                 </div>
             </div>
             <div class="clearfix"> </div>
             <!---->
+            <script>
+                $(function () {
+                    $("#add-to-shopping-cart").on("click", function (e) {
+                        e.preventDefault();
+                        $.post("/shopping-cart", { productId: @Model.ProductId, userName: "@User.Identity.Name" })
+                    });
+                });
+            </script>
+
             <div class="cd-tabs">
                 <nav>
                     <ul class="cd-tabs-navigation">
