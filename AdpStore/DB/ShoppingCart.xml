@@ -5,11 +5,14 @@
       <Text>
         <![CDATA[
         SELECT 
-            ShoppingId,
-            ProductId,
-            UserName,
-            Indate
-        From dbo.ShoppingCart WITH(NOLOCK)
+            a.ShoppingId,
+            a.ProductId,
+            b.Price,
+            a.UserName,
+            a.Indate
+        From dbo.ShoppingCart a WITH(NOLOCK) 
+        INNER JOIN dbo.Product b WITH(NOLOCK)
+        ON a.ProductId = b.ProductId
         WHERE UserName=@UserName
       ]]>
       </Text>

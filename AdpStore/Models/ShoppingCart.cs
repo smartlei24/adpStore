@@ -12,6 +12,8 @@ namespace AdpStore.Models
 
         public string UserName { get; set; }
 
+        public decimal Price { get; set; }
+
         public DateTime InDate { get; set; }
     }
 }
