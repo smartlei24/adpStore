@@ -1,0 +1,100 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "订单列表";
+}
+
+<div class="container">
+    <div class="check">
+        <h1>订单列表</h1>
+        <div class="col-md-9 cart-items">
+            @{
+                var groupedOrder = @Model.GroupBy(i => i.OrderId).ToList();
+            }
+
+            @for (int i = 0; i < @groupedOrder.Count; i++)
+            {
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-2">
+                        <img src="~/images/product1.jpg/@(groupedOrder[i].FirstOrDefault().OrderId).jpg" style="width: 100%" onerror='this.src="/images/pic1.jpg"' />
+                    </div>
+
+                    <div class="cart-item-info col-md-10">
+                        <h3><a href="/order-detail/@groupedOrder[i].FirstOrDefault().OrderId">@groupedOrder[i].FirstOrDefault().ProductName 等 @groupedOrder[i].Count() 个商品</a></h3>
+                        <ul class="qty">
+                            <li><p>商品个数: @groupedOrder[i].Select(r => r.Quantity).Sum()</p></li>
+                            <li><p>订单价格: @groupedOrder[i].Select(r => r.OrderPrice).Sum()</p></li>
+                            <li><p>订单时间: @groupedOrder[i].FirstOrDefault().Indate.ToString("yyyy-MM-dd HH:mm")</p></li>
+                        </ul>
+
+                        <div class="delivery">
+                            <p>订单状态： 正在处理</p>
+                            <span>竭诚为您服务</span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="col-md-3 product-price">
+
+            <div class=" rsidebar span_1_of_left">
+                <div class="of-left">
+                    <h3 class="cate">分类</h3>
+                </div>
+                <ul class="menu">
+                    <li class="item1">
+                        <a href="#">不同场合</a>
+                        <ul class="cute">
+                            <li class="subitem1">
+                                <a href="#">聚会&年会 </a>
+                            </li>
+                            <li class="subitem2">
+                                <a href="#">面试</a>
+                            </li>
+                            <li class="subitem3">
+                                <a href="#">户外娱乐 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item2">
+                        <a href="#">不同风格 </a>
+                        <ul class="cute">
+                            <li class="subitem1">
+                                <a href="#">职业风 </a>
+                            </li>
+                            <li class="subitem2">
+                                <a href="#">休闲风 </a>
+                            </li>
+                            <li class="subitem3">
+                                <a href="#">运动风 </a>
+                            </li>
+                            <li class="subitem3">
+                                <a href="#">淑女风</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                var menu_ul = $('.menu > li > ul'),
+                    menu_a = $('.menu > li > a');
+                menu_ul.hide();
+                menu_a.click(function (e) {
+                    e.preventDefault();
+                    if (!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true, true).slideUp('normal');
+                    }
+                });
+
+            });
+        </script>
+    </div>
+</div>

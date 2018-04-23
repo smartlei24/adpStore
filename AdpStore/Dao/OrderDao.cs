@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdpStore.Models;
+using VIC.DataAccess.Abstraction;
 
 namespace AdpStore.Dao
 {
     public class OrderDao : IOrderDao
     {
-        public Order AddNewOrder(Order newOrder)
+        private IDbManager _db;
+
+        public OrderDao(IDbManager db)
         {
-            throw new NotImplementedException();
+            _db = db;
+        }
+
+        public void AddNewOrder(Order newOrder)
+        {
+            this._db.GetCommand("InsertANewOrder").ExecuteNonQuery<Order>(newOrder);
+        }
+
+        public int GetMaxOrderIdFormDb()
+        {
+            return this._db.GetCommand("GetMaxOrderId").ExecuteScalar<int>();
         }
 
         public Order QueryOrderByOrderId(int orderId)
@@ -18,9 +31,12 @@ namespace AdpStore.Dao
             throw new NotImplementedException();
         }
 
-        public List<Order> QueryOrderByUserId(int userId)
+        public List<Order> QueryOrderByUserName(string userName)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("QueryOrderByUserName").ExecuteEntityList<Order>(new
+            {
+                UserName = userName
+            });
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdpStore.Controllers
 {
-    [Route("order")]
+    [Route("order/")]
     public class OrderController : Controller
     {
         private IOrderBiz biz;
@@ -18,22 +18,25 @@ namespace AdpStore.Controllers
             this.biz = biz;
         }
 
-        [HttpGet()]
-        public IActionResult GetOrderListByUser()
+        [HttpGet("user/{userName}")]
+        public IActionResult GetOrderListByUser(string userName)
         {
-            return View("Index");
+            var orders = this.biz.GetOrderListByUserName(userName);
+            return View("Index", orders);
         }
 
-        [HttpGet("/{orderId}")]
+        [HttpGet("{orderId}")]
         public IActionResult GetOrderDetailById(int orderId)
         {
             return View("Index");
         }
 
-        [HttpPost("")]
-        public IActionResult AddNewOrder(Order order)
+        [HttpPost()]
+        public int AddNewOrder(string userName)
         {
-            return View("Index");
+             var productId = this.biz.AddNewOrder(userName);
+
+            return productId;
         }
     }
 }

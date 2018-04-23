@@ -4,40 +4,53 @@
     <DbSql CommandName="QueryOrderById" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        SELECT 
-            OrderId,
-            UserId,
-            ProductId,
-            Quantity,
-            OrderPrice,
-            Indate
-        FROM dbo.adpStore WITH(NOLOCK)
+         SELECT TOP 1
+            a.OrderId,
+            a.UserName,
+            a.ProductId,
+            b.Name AS ProductName,
+            a.Quantity,
+            a.OrderPrice,
+            a.Indate
+        FROM dbo.[Order] a WITH(NOLOCK)
+        LEFT JOIN dbo.[Product] b WITH(NOLOCK)
+        ON a.ProductId=b.ProductId
         WHERE OrderId=@OrderId
       ]]>
       </Text>
     </DbSql>
-    <DbSql CommandName="QueryOrderByUserId" Type="Text" ConnectionName="Test">
+    <DbSql CommandName="QueryOrderByUserName" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        SELECT 
-            OrderId,
-            UserId,
-            ProductId,
-            Quantity,
-            OrderPrice,
-            Indate
-        FROM dbo.adpStore WITH(NOLOCK)
-        WHERE UserId=@UserId
+         SELECT 
+            a.OrderId,
+            a.UserName,
+            a.ProductId,
+            b.Name AS ProductName,
+            a.Quantity,
+            a.OrderPrice,
+            a.Indate
+        FROM dbo.[Order] a WITH(NOLOCK)
+        LEFT JOIN dbo.[Product] b WITH(NOLOCK)
+        ON a.ProductId=b.ProductId
+        WHERE UserName=@UserName
       ]]>
       </Text>
     </DbSql>
       <DbSql CommandName="InsertANewOrder" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        INSERT INTO dbo.adpStore
-        (UserId,ProductId, Quantity, OrderPrice)
+        INSERT INTO dbo.[Order]
+        (OrderId, UserName, ProductId, Quantity, OrderPrice)
         VALUES
-        (@UserId, @ProductId, @Quantity, @OrderPrice)
+        (@OrderId, @UserName, @ProductId, @Quantity, @OrderPrice)
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="GetMaxOrderId" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT MAX(OrderId) FROM dbo.[Order] WITH(NOLOCK)
       ]]>
       </Text>
     </DbSql>

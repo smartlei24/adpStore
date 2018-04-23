@@ -8,10 +8,12 @@ namespace AdpStore.Dao
 {
     public interface IOrderDao
     {
-        List<Order> QueryOrderByUserId(int userId);
+        List<Order> QueryOrderByUserName(string userName);
 
         Order QueryOrderByOrderId(int orderId);
 
-        Order AddNewOrder(Order newOrder);
+        void AddNewOrder(Order newOrder);
+
+        int GetMaxOrderIdFormDb();
     }
 }

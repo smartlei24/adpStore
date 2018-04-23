@@ -8,9 +8,9 @@
             a.ShoppingId,
             a.ProductId,
             b.Price,
-            a.UserName,
-            a.Indate
-        From dbo.ShoppingCart a WITH(NOLOCK) 
+            b.Name AS ProductName,
+            a.UserName
+        FROM dbo.ShoppingCart a WITH(NOLOCK) 
         INNER JOIN dbo.Product b WITH(NOLOCK)
         ON a.ProductId = b.ProductId
         WHERE UserName=@UserName
@@ -24,10 +24,10 @@
       ]]>
       </Text>
     </DbSql>
-    <DbSql CommandName="DeleteShoppingCartById" Type="Text" ConnectionName="Test">
+    <DbSql CommandName="DeleteShoppingCartByProductId" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
-        DELETE TOP(1) FROM dbo.ShoppingCart WHERE ShoppingId=@ShoppingId
+        DELETE FROM dbo.ShoppingCart WHERE ProductId=@ProductId AND UserName=@UserName
       ]]>
       </Text>
     </DbSql>

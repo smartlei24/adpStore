@@ -10,10 +10,10 @@ namespace AdpStore.Models
 
         public int ProductId { get; set; }
 
+        public string ProductName { set; get; }
+
         public string UserName { get; set; }
 
         public decimal Price { get; set; }
-
-        public DateTime InDate { get; set; }
     }
 }

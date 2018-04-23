@@ -1,65 +1,124 @@
-﻿@model IEnumerable<ShoppingCart>
+﻿@model List<ShoppingCart>
 
 @{
-    ViewData["Title"] = "注册";
+    ViewData["Title"] = "购物车";
 }
 
 <div class="container">
     <div class="check">
         <h1>My Shopping Bag (@Model.Count())</h1>
         <div class="col-md-9 cart-items">
-            @for (int i = 0; i < Model.Count(); i++)
-            {
-                <script>
+
+            @{
+                var group = Model.GroupBy(i => i.ProductId).ToList();
+                for (int i = 0; i < group.Count(); i++)
+                {
+                    <script>
                     $(document).ready(function (c) {
-                        $('.close-@i').on('click', function (c) {
-                            $('.cart-header-@i').fadeOut('slow', function (c) {
-                                $('.cart-header-@i').remove();
+                        $('#close-@i').on('click', function (c) {
+                            $('#product-@i').fadeOut('slow', function (c) {
+                                $.ajax({
+                                    url: '/shopping-cart/product/@group[i].FirstOrDefault().ProductId',
+                                    type: 'DELETE',
+                                    data: {
+                                        productId: @group[i].FirstOrDefault().ProductId,
+                                        userName: "@User.Identity.Name"
+                                    }
+                                }).done(function() {
+                                    location.reload();
+                                });
                             });
                         });
                     });
-                </script>
-                <div class="cart-header-@i">
-                    <div class="close1 pull-right close-@i"> </div>
-                    <div class="cart-sec simpleCart_shelfItem">
-                        <div class="cart-item cyc">
-                            <img src="images/pic1.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <div class="cart-item-info">
-                            <h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-                            <ul class="qty">
-                                <li><p>Size : 5</p></li>
-                                <li><p>Qty : 1</p></li>
-                            </ul>
+                    </script>
+                    <div class="cart-header" id="product-@i">
+                        <div class="close1" id="close-@i"> </div>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <img src="~/images/pic1.jpg" class="img-responsive" alt="" />
+                            </div>
+                            <div class="cart-item-info">
+                                <h3><a href="/product/product/@group[i].FirstOrDefault().ProductId">@group[i].FirstOrDefault().ProductName</a><span>Model No: (@group[i].FirstOrDefault().ProductId) </span></h3>
+                                <ul class="qty">
+                                    <li><p>Unit Price: @group[i].FirstOrDefault().Price</p></li>
+                                    <li><p>Quantity: @group[i].Count()</p></li>
+                                </ul>
 
-                            <div class="delivery">
-                                <p>Service Charges : Rs.100.00</p>
-                                <span>Delivered in 2-3 bussiness days</span>
+                                <div class="delivery">
+                                    <p>Freight : 0.00</p>
+                                    <span>Expected delivery tomorrow</span>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
-                </div>
+                }
             }
         </div>
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Continue to basket</a>
             <div class="price-details">
                 <h3>Price Details</h3>
-                <span>Total</span>
-                <span class="total1">6200.00</span>
+                <span>Total Quantity</span>
+                <span class="total1">@Model.Count()</span>
                 <span>Discount</span>
                 <span class="total1">---</span>
                 <span>Delivery Charges</span>
-                <span class="total1">150.00</span>
+                <span class="total1">0.00</span>
                 <div class="clearfix"></div>
             </div>
             <ul class="total_price">
                 <li class="last_price"> <h4>TOTAL</h4></li>
-                <li class="last_price"><span>@Model.All(i => i.Price)</span></li>
+                <li class="last_price"><span>@Model.Select(i => i.Price).Sum()</span></li>
                 <div class="clearfix"> </div>
             </ul>
+            <div class="clearfix"></div>
+            <a class="order" href="javascript:void(0)" id="place-order">Place Order</a>
         </div>
 
         <div class="clearfix"> </div>
     </div>
 </div>
+
+<div class="modal fade" id="order-success-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">下单成功</h4>
+            </div>
+            <div class="modal-body">
+                <p>您的订单已经成功~ 订单编号为: <span id="orderId"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="look-order-detail">查看订单详情</button>
+                <button type="button" class="btn btn-primary" id="continue-shopping">继续购物</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    $('#place-order').on('click',
+        function() {
+            $.ajax({
+                url: '/order',
+                type: 'POST',
+                data: { userName: "@User.Identity.Name" }
+            }).done(function(data) {
+                $('#orderId').text(data);
+                $('#order-success-modal').modal('show');
+            });
+        });
+
+    $('#look-order-detail').on('click',
+        function () {
+            var productId = $('#orderId').text();
+            window.location.href = "/order-detail/"+productId;
+        });
+
+    $('#continue-shopping').on('click',
+        function() {
+            window.location.href = "/";
+        });
+</script>

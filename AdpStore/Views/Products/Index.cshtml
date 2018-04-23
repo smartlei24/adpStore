@@ -153,10 +153,10 @@
         <div class=" bottom-product">
             @if (Model.Count() > 0)
             {
-                @foreach (var item in Model)
+                foreach (var item in Model)
                 {
                     <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                        <div class="product-at ">
+                        <div class="product-at">
                             <a href="~/product-detail/@item.ProductId">
                                 <img style="width: 100%" class="img-responsive" src="~/images/p@(item.ProductId).jpg" onerror='this.src="/images/p2.jpg"' alt="">
                                 <div class="pro-grid">

@@ -12,7 +12,7 @@ namespace AdpStore.Biz
 
         void AddShoppingCart(ShoppingCart shoppingCart);
 
-        void DeleteShoppingCartById(int id);
+        void DeleteShoppingCartById(int productId, string userName);
 
         void EmptyUserShoppingCart(string userName);
     }

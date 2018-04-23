@@ -21,9 +21,9 @@ namespace AdpStore.Biz
             this.dao.AddShoppingCart(shoppingCart);
         }
 
-        public void DeleteShoppingCartById(int id)
+        public void DeleteShoppingCartById(int id, string userName)
         {
-            this.DeleteShoppingCartById(id);
+            this.dao.DeleteShoppingCartById(id, userName);
         }
 
         public void EmptyUserShoppingCart(string userId)

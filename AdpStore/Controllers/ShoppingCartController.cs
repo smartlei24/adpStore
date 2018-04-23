@@ -33,15 +33,14 @@ namespace AdpStore.Controllers
             return;
         }
 
-        [HttpDelete()]
-        public async Task<IActionResult> DeleteShoppingCart(ShoppingCart shoppingCart)
+        [HttpDelete("product/{productId}")]
+        public void DeleteShoppingCart(int productId, string userName)
         {
-            this.biz.AddShoppingCart(shoppingCart);
-            var records = this.biz.QueryShoppingCartByUserName(shoppingCart.UserName);
-            return View("Index", records);
+            this.biz.DeleteShoppingCartById(productId, userName);
+            return;
         }
 
-        [HttpDelete("{userId}")]
+        [HttpDelete("user/{userId}")]
         public void EmptyShoppingCart(string userName)
         {
             this.biz.EmptyUserShoppingCart(userName);

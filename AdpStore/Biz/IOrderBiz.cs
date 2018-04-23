@@ -8,10 +8,10 @@ namespace AdpStore.Biz
 {
     public interface IOrderBiz
     {
-        Order AddNewOrder(Order newOrder);
+        int AddNewOrder(string userName);
 
-        Order GetOrderDetailById(int orderId);
+        Order GetOrderDetailById(int orderId);  
 
-        List<Order> GetOrderListByUserId(int userId);
+        List<Order> GetOrderListByUserName(string userName);
     }
 }

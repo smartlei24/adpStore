@@ -29,11 +29,12 @@ namespace AdpStore.Dao
             });
         }
 
-        public void DeleteShoppingCartById(int id)
+        public void DeleteShoppingCartById(int productId, string userName)
         {
-            this._db.GetCommand("QueryShoppingCartByUserName").ExecuteNonQuery(new
+            this._db.GetCommand("DeleteShoppingCartByProductId").ExecuteNonQuery(new
             {
-                ShoppingId = id
+                ProductId = productId,
+                UserName = userName
             });
         }
 

@@ -55,17 +55,25 @@
                     <div class="cart box_1">
                         <a href="javascript:void(0);" id="click-cart">
                             <h3>
+                                <img src="~/images/cart.png" alt="" />
                                 <div class="total">
-                                    <span class="simpleCart_total"></span> (
-                                    <span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+                                    <span>Go to Cart</span>
                                 </div>
-                                <img src="images/cart.png" alt="" />
                             </h3>
                         </a>
                         <p>
                             <a id="empty-cart" href="javascript:void(0);">Empty Cart</a>
                         </p>
 
+                    </div>
+                    <div class="cart box_1" style="margin-right: 20px">
+                        <a href="javascript:void(0);" id="click-order">
+                            <h3>
+                                <div class="total">
+                                    <span>Go to My Order</span>
+                                </div>
+                            </h3>
+                        </a>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -77,10 +85,13 @@
                 e.preventDefault();
                 if ("@User.Identity.Name" != "") {
                     $.ajax({
-                        url: '/shopping-cart/@User.Identity.Name',
+                        url: '/shopping-cart/user/@User.Identity.Name',
                         type: 'DELETE',
                         data: { userName: "@User.Identity.Name" }
-                    })
+                    }).done(function() {
+                        alert("清空成功！");
+
+                    });
                 }
             });
 
@@ -88,15 +99,26 @@
                 e.preventDefault();
                 if ("@User.Identity.Name" != "") {
                     window.location.href = "/shopping-cart/@User.Identity.Name";
+                } else {
+                    alert("请先登陆");
                 }
             });
+
+            $('#click-order').on("click", function(e) {
+                e.preventDefault();
+                if ("@User.Identity.Name" != "") {
+                    window.location.href = "/order/@User.Identity.Name";
+                } else {
+                    alert("请先登陆");
+                }
+            })
         </script>
         <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
         <div class="container">
             <div class="head-top">
                 <div class="logo">
                     <a href="~/">
-                        <img src="images/logo1.png" alt="">
+                        <img src="~/images/logo1.png" alt="">
                     </a>
                 </div>
                 <div class=" h_menu4">

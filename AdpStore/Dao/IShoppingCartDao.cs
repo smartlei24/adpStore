@@ -12,7 +12,7 @@ namespace AdpStore.Dao
 
         void AddShoppingCart(ShoppingCart shoppingCart);
 
-        void DeleteShoppingCartById(int id);
+        void DeleteShoppingCartById(int productId, string userName);
 
         void DeleteAllShoppingCartByUserName(string userId);
     }

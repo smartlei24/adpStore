@@ -11,14 +11,32 @@ namespace AdpStore.Biz
     {
         private IOrderDao dao;
 
-        public OrderBiz(IOrderDao dao)
+        private IShoppingCartDao shoppingDao;
+
+        public OrderBiz(IOrderDao dao, IShoppingCartDao shoppingDao)
         {
             this.dao = dao;
+            this.shoppingDao = shoppingDao;
         }
 
-        public Order AddNewOrder(Order newOrder)
+        public int AddNewOrder(string userName)
         {
-            throw new NotImplementedException();
+            var shoppingRecords = this.shoppingDao.QueryShoppingCartByUserName(userName);
+            var orderId = this.dao.GetMaxOrderIdFormDb() + 1;
+            var order = shoppingRecords.GroupBy(i => i.ProductId).ToList();
+            order.ForEach(i =>
+            {
+                this.dao.AddNewOrder(new Order
+                {
+                    OrderId = orderId,
+                    UserName = userName,
+                    ProductId = i.FirstOrDefault().ProductId,
+                    OrderPrice = i.Select(r => r.Price).Sum(),
+                    Quantity = i.Count()
+                });
+            });
+            this.shoppingDao.DeleteAllShoppingCartByUserName(userName);
+            return orderId;
         }
 
         public Order GetOrderDetailById(int orderId)
@@ -26,9 +44,9 @@ namespace AdpStore.Biz
             throw new NotImplementedException();
         }
 
-        public List<Order> GetOrderListByUserId(int userId)
+        public List<Order> GetOrderListByUserName(string userName)
         {
-            throw new NotImplementedException();
+            return this.dao.QueryOrderByUserName(userName);
         }
     }
 }
