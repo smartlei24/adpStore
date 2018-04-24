@@ -7,12 +7,12 @@
     <div class="check">
         <h1>订单列表</h1>
         <div class="col-md-9 cart-items">
-            @{
-                var groupedOrder = @Model.GroupBy(i => i.OrderId).ToList();
-            }
-
-            @for (int i = 0; i < @groupedOrder.Count; i++)
+            @if (@Model.Count > 0)
             {
+                var groupedOrder = Model.GroupBy(i => i.OrderId).ToList();
+
+                for (int i = 0; i < groupedOrder.Count; i++)
+                {
                 <div class="row" style="margin-bottom: 10px;">
                     <div class="col-md-2">
                         <img src="~/images/product1.jpg/@(groupedOrder[i].FirstOrDefault().OrderId).jpg" style="width: 100%" onerror='this.src="/images/pic1.jpg"' />
@@ -32,6 +32,11 @@
                         </div>
                     </div>
                 </div>
+                }
+            }
+            else
+            {
+                <h3>暂无订单，赶快选两件喜欢的吧~</h3>
             }
 
         </div>

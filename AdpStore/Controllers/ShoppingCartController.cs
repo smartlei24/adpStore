@@ -18,7 +18,7 @@ namespace AdpStore.Controllers
             this.biz = biz;
         }
 
-        [HttpGet("{userName}")]
+        [HttpGet("user/{userName}")]
         public IActionResult GetUsersShoppingCart(string userName)
         {
             var records = this.biz.QueryShoppingCartByUserName(userName);

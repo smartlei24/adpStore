@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,7 @@ namespace AdpStore
             services.AddMvc();
 
             services.UseDataAccess()
-                .UseDataAccessConfig(dbDirectory, false, null, "db.Development.xml", "Product.xml", "User.xml", "ShoppingCart.xml", "Order.xml")
+                .UseDataAccessConfig(dbDirectory, false, null, $"db.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.xml", "Product.xml", "User.xml", "ShoppingCart.xml", "Order.xml")
                 .BuildServiceProvider();
 
             services

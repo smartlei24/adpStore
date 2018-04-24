@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DbConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ConnectionStrings>
+    <DataConnection Name="Test" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=AdpStore;UID=sa;PassWord=Zhengqi.2018; " />
+  </ConnectionStrings>
+</DbConfig>

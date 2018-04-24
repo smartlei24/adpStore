@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - 爱搭配后台管理</title>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <environment include="Development,Production">
+    </environment>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="header navbar-header">
+            <div class="logo">
+                <img src="images/admin_logo.png" title="在哪儿" />
+            </div>
+            <div class="fr top-link">
+                <a href="/" title="访问站点"><i class="shopLinkIcon"></i><span>访问站点</span></a>
+                <i class="adminIcon"></i><span>管理员：@User.Identity.Name</span>
+                <a href="#" title="安全退出" style="background: rgb(60, 60, 60);"><i class="quitIcon"></i><span>安全退出</span></a>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</body>
+</html>

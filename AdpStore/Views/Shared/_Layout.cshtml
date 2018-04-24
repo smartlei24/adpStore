@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - 爱搭配</title>
 
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <environment include="Development">
+    <environment include="Development,Production">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/flexslider.css" />
         <link rel="stylesheet" href="~/css/memenu.css" />
@@ -98,7 +98,7 @@
             $('#click-cart').on("click", function (e) {
                 e.preventDefault();
                 if ("@User.Identity.Name" != "") {
-                    window.location.href = "/shopping-cart/@User.Identity.Name";
+                    window.location.href = "/shopping-cart/user/@User.Identity.Name";
                 } else {
                     alert("请先登陆");
                 }
@@ -107,7 +107,7 @@
             $('#click-order').on("click", function(e) {
                 e.preventDefault();
                 if ("@User.Identity.Name" != "") {
-                    window.location.href = "/order/@User.Identity.Name";
+                    window.location.href = "/order/user/@User.Identity.Name";
                 } else {
                     alert("请先登陆");
                 }
@@ -262,9 +262,9 @@
         </div>
     </div>
 
-    <environment include="Development">
+    <environment include="Development,Production">
     </environment>
-    <environment exclude="Development">
+    <environment exclude="Development,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
