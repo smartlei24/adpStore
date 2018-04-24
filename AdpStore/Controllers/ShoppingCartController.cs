@@ -19,7 +19,7 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet("{userName}")]
-        public async Task<IActionResult> GetUsersShoppingCart(string userName)
+        public IActionResult GetUsersShoppingCart(string userName)
         {
             var records = this.biz.QueryShoppingCartByUserName(userName);
             return View("Index", records);

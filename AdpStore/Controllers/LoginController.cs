@@ -21,13 +21,13 @@ namespace AdpStore.Controllers
             this.biz = biz;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
 
         [Route("login")]
-        public async Task<IActionResult> Login(User user)
+        public IActionResult Login(User user)
         {
             var isExist = this.biz.CheckUserIsExist(user);
             if (isExist)
@@ -35,7 +35,7 @@ namespace AdpStore.Controllers
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(ClaimTypes.Sid, user.ID.ToString()));
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 return Redirect("/");
             }
             else
@@ -51,9 +51,9 @@ namespace AdpStore.Controllers
         }
 
         [Route("logout")]
-        public async Task<IActionResult> Logout(User user)
+        public IActionResult Logout(User user)
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/");
         }
     }

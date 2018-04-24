@@ -17,7 +17,7 @@ namespace AdpStore.Controllers
         }
 
         [HttpGet("product-detail/{id}")]
-        public async Task<IActionResult> GetProductDetailById(int id)
+        public IActionResult GetProductDetailById(int id)
         {
             var product = this.biz.QueryProductDetail(id);
             return View("Index", product);

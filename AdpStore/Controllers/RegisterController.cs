@@ -24,7 +24,7 @@ namespace AdpStore.Controllers
         }
 
         [Route("new")]
-        public async Task<IActionResult> RigisterNewUser(User newUser)
+        public IActionResult RigisterNewUser(User newUser)
         {
             var isSuccess = this.biz.AddNewUser(newUser);
             if (!isSuccess)

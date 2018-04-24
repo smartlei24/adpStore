@@ -34,8 +34,9 @@ CREATE TABLE dbo.[Product]
 
 CREATE TABLE dbo.[Order]
 (
-    OrderId INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
-    UserId INT NOT NULL,
+    TranscationNumber INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
+    OrderId INT NOT NULL,
+    UserName NVARCHAR(30) NOT NULL,
     ProductId INT NOT NULL,
     Quantity INT NOT NULL,
     OrderPrice INT NOT NULL,
