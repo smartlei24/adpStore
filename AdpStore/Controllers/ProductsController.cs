@@ -48,23 +48,24 @@ namespace AdpStore.Controllers
             return View("Index", PaginatedList<Product>.Create(products.AsQueryable(), page ?? 1, 6));
         }
 
-        [HttpPut("product")]
+        [HttpPut("product/admin")]
         public IActionResult UpdateProductInfo(Product product)
         {
             var updatedProduct = this.biz.UpdateProduct(product);
             return View("Index", updatedProduct);
         }
 
-        [HttpDelete("product/{id}")]
+        [HttpDelete("product/admin/{id}")]
         public IActionResult DeleteProductById(int id)
         {
             var isSuccessful = this.biz.DeleteProductById(id);
             return View("Index");
         }
 
-        [HttpPost("product/")]
+        [HttpPost("admin/")]
         public IActionResult AddNewProduct(Product product)
         {
+            return View("AdminProduct");
             var updatedProduct = this.biz.AddNewProduct(product);
             return View("Index", updatedProduct);
         }

@@ -34,7 +34,7 @@ namespace AdpStore.Controllers
         [HttpPost()]
         public int AddNewOrder(string userName)
         {
-             var productId = this.biz.AddNewOrder(userName);
+            var productId = this.biz.AddNewOrder(userName);
 
             return productId;
         }
