@@ -7,7 +7,7 @@ namespace AdpStore.Models
 {
     public class User
     {
-        public int ID { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "用户名不能为空")]
         public string Name { get; set; }
@@ -19,6 +19,8 @@ namespace AdpStore.Models
         public string Address { get; set; }
 
         public string EmailAddress { get; set; }
+
+        public decimal Balance { get; set; }
 
         public string TelNumber { get; set; }
 

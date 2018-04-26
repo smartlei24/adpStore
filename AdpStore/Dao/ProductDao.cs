@@ -16,14 +16,17 @@ namespace AdpStore.Dao
             _db = db;
         }
 
-        public bool AddNewProduct(Product newProduct)
+        public int AddNewProduct(Product newProduct)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("InsertANewProduct").ExecuteScalar<int>(newProduct);
         }
 
-        public bool DeleteProductById(int productId)
+        public void DeleteProductById(int productId)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("DeleteAExistProduct").ExecuteNonQuery(new
+            {
+                ProductId = productId
+            });
         }
 
         public List<Product> QueryAllProducts()
@@ -66,9 +69,9 @@ namespace AdpStore.Dao
             });
         }
 
-        public Product UpdateProduct(Product product)
+        public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("UpdateProductInfo").ExecuteNonQuery(product);
         }
     }
 }

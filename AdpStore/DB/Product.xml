@@ -78,9 +78,10 @@
       <Text>
         <![CDATA[
         INSERT TOP(1) INTO dbo.Product
-            (Name, SimpleDescription, DateilDescription, Price, Situation, Style)
+            (Name, SimpleDescription, DetailDescription, Price, Situation, Style)
+            OUTPUT Inserted.ProductId
         VALUES
-            (@Name, @SimpleDescription, @DateilDescription, @Price, @Situation, @Style)
+            (@Name, @SimpleDescription, @DetailDescription, @Price, @Situation, @Style)
       ]]>
       </Text>
     </DbSql>
@@ -99,8 +100,8 @@
           SimpleDescription=@SimpleDescription,
           DetailDescription=@DetailDescription,
           Price=@Price,
-          Situaion=@Situation,
-          Style=@Style,
+          Situation=@Situation,
+          Style=@Style
         WHERE ProductId=@ProductId
       ]]>
       </Text>

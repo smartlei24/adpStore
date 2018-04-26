@@ -17,11 +17,11 @@
                 </div>
                 <div class="form-group has-feedback">
                     <span>Password</span>
-                    <input type="password" asp-for="Password">
+                    <input type="password" id="password" asp-for="Password">
                 </div>
                 <div class="form-group has-feedback">
                     <span>Confirm Password</span>
-                    <input type="password">
+                    <input type="password" id="confirm_password">
                 </div>
                 <a class="news-letter" href="#">
                     <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
@@ -35,17 +35,33 @@
                 </div>
                 <div class="form-group has-feedback">
                     <span>Email Address</span>
-                    <input type="text" asp-for="EmailAddress">
+                    <input type="email" asp-for="EmailAddress">
                 </div>
                 <div class="form-group has-feedback">
                     <span>Tel</span>
-                    <input type="text" asp-for="TelNumber">
+                    <input type="tel" asp-for="TelNumber">
                 </div>
                 <input type="submit" asp-controller="Register" asp-action="new" value="submit">
 
             </div>
             <div class="clearfix"> </div>
         </form>
+
+        <script type="text/javascript">
+            var password = document.getElementById("password")
+                , confirm_password = document.getElementById("confirm_password");
+
+            function validatePassword(){
+                if(password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        </script>
     </div>
 </div>
 

@@ -11,6 +11,7 @@
             RTRIM(EmailAddress) AS EmailAddress,
             RTRIM(TelNumber) AS TelNumber,
             RTRIM(Address) AS Address,
+            Balance,
             Indate
         FROM dbo.[User] 
         WHERE UserId=@UserId
@@ -27,6 +28,7 @@
             RTRIM(EmailAddress) AS EmailAddress,
             RTRIM(TelNumber) AS TelNumber,
             RTRIM(Address) AS Address,
+            Balance,
             Indate
         FROM dbo.[User] 
         WHERE Name=@Name
@@ -43,6 +45,7 @@
             RTRIM(EmailAddress) AS EmailAddress,
             RTRIM(TelNumber) AS TelNumber,
             RTRIM(Address) AS Address,
+            Balance,
             Indate
         FROM dbo.[User]
       ]]>
@@ -56,7 +59,8 @@
             PassWord=@PassWord, 
             EmailAddress=@EmailAddress, 
             TelNumber=@TelNumber, 
-            Address=@Address
+            Address=@Address,
+            Balance=@Balance
         Where UserId=@UserId
       ]]>
       </Text>
@@ -68,16 +72,6 @@
         (Name, PassWord, EmailAddress, TelNumber, Address) 
         VALUES
         (@Name, @Password, @EmailAddress, @TelNumber, @Address)
-      ]]>
-      </Text>
-    </DbSql>
-    <DbSql CommandName="InsertANewUser" Type="Text" ConnectionName="Test">
-      <Text>
-        <![CDATA[
-        INSERT INTO dbo.[User] 
-        (Name, PassWord, EmailAddress, TelNumber, Address) 
-        VALUES
-        (@Name, @PassWord, @EmailAddress, @TelNumber, @Address)
       ]]>
       </Text>
     </DbSql>

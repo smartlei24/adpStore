@@ -1,0 +1,60 @@
+﻿@model AdpStore.Models.User
+
+@{
+    ViewData["Title"] = "编辑用户信息";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="/admin/user-editor" method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">用户ID</label>
+                <input asp-for="UserId" class="form-control" readonly />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">用户名</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Balance" class="control-label">余额</label>
+                <input asp-for="Balance" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">密码</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">地址</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label">邮件地址</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelNumber" class="control-label">电话号码</label>
+                <input asp-for="TelNumber" class="form-control" />
+                <span asp-validation-for="TelNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Indate" class="control-label">创建时间</label>
+                <input asp-for="Indate" class="form-control" readonly />
+                <span asp-validation-for="Indate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" style="width: 100%" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

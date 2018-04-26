@@ -1,0 +1,93 @@
+﻿@model PaginatedList<AdpStore.Models.User>
+
+@{
+    ViewData["Title"] = "用户列表";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="page-title">
+    <span class="modular fl">
+        <i></i>
+        <em>用户列表</em>
+    </span>
+</div>
+
+<div class="col-md-offset-1 col-md-10">
+    <table class="list-style Interlaced">
+        @foreach (var item in Model)
+        {
+        }
+
+        <tr>
+            <th>用户ID</th>
+            <th>用户名</th>
+            <th>余额</th>
+            <th>地址</th>
+            <th>电子邮箱</th>
+            <th>电话号码</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="td-name">
+                    <span class="ellipsis td-name block">@Html.DisplayFor(modelItem => item.UserId)</span>
+                </td>
+                <td class="center">
+                    <span>@Html.DisplayFor(modelItem => item.Name)</span>
+                </td>
+                <td class="center">
+                    <span>￥ @Html.DisplayFor(modelItem => item.Balance)</span>
+                </td>
+                <td class="center">
+                    <span> @Html.DisplayFor(modelItem => item.Address)</span>
+                </td>
+                <td class="center">
+                    <span>@Html.DisplayFor(modelItem => item.EmailAddress)</span>
+                </td>
+                <td class="center">
+                    <span>@Html.DisplayFor(modelItem => item.TelNumber)</span>
+                </td>
+                <td class="center">
+                    <a title="编辑" href="/admin/user-editor/@item.UserId">
+                        <img src="~/images/icon_edit.gif" />
+                    </a>
+                    <a title="删除" onclick="deleteUser(@item.UserId)">
+                        <img src="~/images/icon_drop.gif" />
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+    function deleteUser(i) {
+        $.ajax({
+            url: "/admin/user/",
+            method: "DELETE",
+            data: { userId: i }
+        }).done(function () {
+            alert("删除成功！");
+            window.location.reload();   
+        });
+    }
+</script>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="col-lg-12" style="text-align: center; margin-top: 10px;">
+    <a href="@(Url.RouteUrl(ViewContext.RouteData.Values))?page=@(Model.PageIndex - 1)"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a href="@(Url.RouteUrl(ViewContext.RouteData.Values))?page=@(Model.PageIndex + 1)"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
+<div class="clearfix"> </div>

@@ -12,11 +12,11 @@ namespace AdpStore.Biz
 
         User GetUserById(int id);
 
-        User UpdateUser(User user);
+        void UpdateUser(User user);
 
         bool AddNewUser(User user);
 
-        bool DeleteUserById(int id);
+        void DeleteUserById(int id);
 
         bool CheckUserIsExist(User user);
     }

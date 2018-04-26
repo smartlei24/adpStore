@@ -10,13 +10,13 @@ namespace AdpStore.Dao
     {
         void AddNewUser(User user);
 
-        bool DeleteUserById(int id);
+        void DeleteUserById(int id);
 
         User QueryUserById(int id);
 
         List<User> QueryAllUser();
 
-        User UpdateUser(User user);
+        int UpdateUser(User user);
 
         User QueryUserByUserName(string name);
     }

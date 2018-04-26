@@ -37,7 +37,7 @@
       ]]>
       </Text>
     </DbSql>
-      <DbSql CommandName="InsertANewOrder" Type="Text" ConnectionName="Test">
+    <DbSql CommandName="InsertANewOrder" Type="Text" ConnectionName="Test">
       <Text>
         <![CDATA[
         INSERT INTO dbo.[Order]
@@ -51,6 +51,20 @@
       <Text>
         <![CDATA[
         SELECT MAX(OrderId) FROM dbo.[Order] WITH(NOLOCK)
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="GetBalanceByUserName" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        SELECT Balance FROM dbo.[User] WITH(NOLOCK) WHERE Name=@UserName
+      ]]>
+      </Text>
+    </DbSql>
+    <DbSql CommandName="SubtractUserBalance" Type="Text" ConnectionName="Test">
+      <Text>
+        <![CDATA[
+        UPDATE dbo.[User] SET Balance=Balance-@OrderAmt WHERE Name=@UserName
       ]]>
       </Text>
     </DbSql>

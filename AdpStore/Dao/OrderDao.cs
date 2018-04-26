@@ -38,5 +38,22 @@ namespace AdpStore.Dao
                 UserName = userName
             });
         }
+
+        public decimal GetBalanceByUserName(string userName)
+        {
+            return this._db.GetCommand("GetBalanceByUserName").ExecuteScalar<decimal>(new
+            {
+                UserName = userName
+            });
+        }
+
+        public void SubtractUserBalance(string userName, decimal orderAmt)
+        {
+            this._db.GetCommand("SubtractUserBalance").ExecuteNonQuery(new
+            {
+                UserName = userName,
+                OrderAmt = orderAmt
+            });
+        }
     }
 }

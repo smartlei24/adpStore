@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AdpStore.Dao;
 using AdpStore.Models;
@@ -22,6 +23,14 @@ namespace AdpStore.Biz
         public int AddNewOrder(string userName)
         {
             var shoppingRecords = this.shoppingDao.QueryShoppingCartByUserName(userName);
+            var userBalance = this.dao.GetBalanceByUserName(userName);
+            var orderAmt  = shoppingRecords.Select(i => i.Price).Sum();
+
+            if (userBalance < orderAmt)
+            {
+                return -1;
+            }
+
             var orderId = this.dao.GetMaxOrderIdFormDb() + 1;
             var order = shoppingRecords.GroupBy(i => i.ProductId).ToList();
             order.ForEach(i =>
@@ -35,6 +44,8 @@ namespace AdpStore.Biz
                     Quantity = i.Count()
                 });
             });
+
+            this.dao.SubtractUserBalance(userName, orderAmt);
             this.shoppingDao.DeleteAllShoppingCartByUserName(userName);
             return orderId;
         }

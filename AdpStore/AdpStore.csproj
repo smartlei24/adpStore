@@ -24,6 +24,9 @@
     <None Update="DB\db.Development.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="DB\db.Production.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DB\Order.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

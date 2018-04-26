@@ -1,0 +1,62 @@
+﻿@model AdpStore.Models.Product
+
+@{
+    ViewData["Title"] = "EditProduct";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>EditProduct</h2>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="/admin/product/edit-product" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label">商品ID</label>
+                <input asp-for="ProductId" class="form-control" readonly />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">商品名称</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SimpleDescription" class="control-label">简单描述</label>
+                <input asp-for="SimpleDescription" class="form-control" />
+                <span asp-validation-for="SimpleDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailDescription" class="control-label">详细描述</label>
+                <input asp-for="DetailDescription" class="form-control" />
+                <span asp-validation-for="DetailDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">价格</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Style" class="control-label">风格</label>
+                    <input asp-for="Style" class="form-control" />
+                    <span asp-validation-for="Style" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Situation" class="control-label"></label>
+                <input asp-for="Situation" class="form-control" />
+                <span asp-validation-for="Situation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Indate" class="control-label"></label>
+                <input asp-for="Indate" type="datetime" class="form-control" readonly />
+                <span asp-validation-for="Indate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" style="width: 100%" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

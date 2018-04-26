@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace AdpStore.Biz
 {
@@ -18,10 +19,14 @@ namespace AdpStore.Biz
 
         List<Product> QueryProductsBySituation(string situation);
 
-        bool AddNewProduct(Product newProduct);
+        int AddNewProduct(Product newProduct);
 
-        bool DeleteProductById(int productId);
+        void DeleteProductById(int productId);
 
-        Product UpdateProduct(Product product);
+        void UpdateProduct(Product product);
+
+        Product QueryProductById(int productId);
+
+        void saveProductImg(IFormFile file, int productProductId);
     }
 }

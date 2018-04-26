@@ -103,7 +103,7 @@ input,button,select,img{vertical-align:middle;}
 .list-style .pic-area{width:50px;}
 .list-style .thumbnail{width:30px;height:30px;}
 .list-style .children-checkbox{width:15px;height:15px;float:left;}
-.list-style .td-name{width:350px;}
+.list-style .td-name{width:150px;}
 .list-style address{width:450px;font-style:normal;}
 /*reply*/
 .R-userTitle{height:35px;line-height:35px;font-size:14px;font-weight:bold;}

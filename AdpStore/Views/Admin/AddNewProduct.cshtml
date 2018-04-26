@@ -1,0 +1,52 @@
+﻿@model AdpStore.Models.Product
+
+@{
+    ViewData["Title"] = "新增商品";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+
+<h4>新增商品</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="/admin/product/new-product" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">商品名称</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SimpleDescription" class="control-label">简略描述</label>
+                <input asp-for="SimpleDescription" class="form-control" />
+                <span asp-validation-for="SimpleDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailDescription" class="control-label">详细描述</label>
+                <input asp-for="DetailDescription" class="form-control" />
+                <span asp-validation-for="DetailDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">价格</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Style" class="control-label">风格</label>
+                <input asp-for="Style" class="form-control" />
+                <span asp-validation-for="Style" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Situation" class="control-label">场合</label>
+                <input asp-for="Situation" class="form-control" />
+                <span asp-validation-for="Situation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

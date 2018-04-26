@@ -15,5 +15,9 @@ namespace AdpStore.Dao
         void AddNewOrder(Order newOrder);
 
         int GetMaxOrderIdFormDb();
+
+        decimal GetBalanceByUserName(string userName);
+
+        void SubtractUserBalance(string userName, decimal orderAmt);
     }
 }

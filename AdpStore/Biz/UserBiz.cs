@@ -41,24 +41,24 @@ namespace AdpStore.Biz
             }
         }
 
-        public bool DeleteUserById(int id)
+        public void DeleteUserById(int id)
         {
-            throw new NotImplementedException();
+            this.dao.DeleteUserById(id);
         }
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            return this.dao.QueryUserById(id);
         }
 
         public List<User> QueryAllUser()
         {
-            throw new NotImplementedException();
+            return this.dao.QueryAllUser();
         }
 
-        public User UpdateUser(User user)
+        public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            this.dao.UpdateUser(user);
         }
     }
 }

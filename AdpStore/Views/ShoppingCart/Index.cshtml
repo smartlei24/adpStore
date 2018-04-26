@@ -100,21 +100,27 @@
 
 <script>
     $('#place-order').on('click',
-        function() {
+        function () {
+            if (@Model.Count() === 0) {
+                return;
+            }
             $.ajax({
                 url: '/order',
                 type: 'POST',
                 data: { userName: "@User.Identity.Name" }
-            }).done(function(data) {
-                $('#orderId').text(data);
-                $('#order-success-modal').modal('show');
+            }).done(function (data) {
+                if (data > 0) {
+                    $('#orderId').text(data);
+                    $('#order-success-modal').modal('show');
+                } else {
+                    alert("余额不足，请联系管理员充值~");
+                }
             });
         });
 
     $('#look-order-detail').on('click',
         function () {
-            var productId = $('#orderId').text();
-            window.location.href = "/order-detail/"+productId;
+            window.location.href = "/order/user/@User.Identity.Name";
         });
 
     $('#continue-shopping').on('click',

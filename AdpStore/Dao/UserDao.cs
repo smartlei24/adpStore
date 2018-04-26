@@ -21,19 +21,25 @@ namespace AdpStore.Dao
             this._db.GetCommand("AddANewUser").ExecuteScalar<User>(user);
         }
 
-        public bool DeleteUserById(int id)
+        public void DeleteUserById(int id)
         {
-            throw new NotImplementedException();
+            this._db.GetCommand("DeleteUserById").ExecuteNonQuery(new
+            {
+                UserId = id
+            });
         }
 
         public List<User> QueryAllUser()
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("QueryAllUser").ExecuteEntityList<User>();
         }
 
         public User QueryUserById(int id)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("QueryUserById").ExecuteEntity<User>(new
+            {
+                UserId = id
+            });
         }
 
         public User QueryUserByUserName(string name)
@@ -45,9 +51,9 @@ namespace AdpStore.Dao
             });
         }
 
-        public User UpdateUser(User user)
+        public int UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            return this._db.GetCommand("UpdateUserInfo").ExecuteNonQuery(user);
         }
     }
 }

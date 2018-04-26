@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AdpStore.Dao;
 using AdpStore.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace AdpStore.Biz
 {
     public class ProductBiz : IProductBiz
     {
         private IProductDao dao;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProductBiz(IProductDao dao)
+        public ProductBiz(IProductDao dao, IHostingEnvironment hostingEnvironment)
         {
             this.dao = dao;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-        public bool AddNewProduct(Product newProduct)
+        public int AddNewProduct(Product newProduct)
         {
-            throw new NotImplementedException();
+            return this.dao.AddNewProduct(newProduct);
         }
 
-        public bool DeleteProductById(int productId)
+        public void DeleteProductById(int productId)
         {
-            throw new NotImplementedException();
+            this.dao.DeleteProductById(productId);
         }
 
         public List<Product> QueryAllProducts()
@@ -53,9 +58,35 @@ namespace AdpStore.Biz
             return this.dao.QueryProductBySituation(situation);
         }
 
-        public Product UpdateProduct(Product product)
+        public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            this.dao.UpdateProduct(product);
+        }
+
+        public Product QueryProductById(int productId)
+        {
+            return this.dao.QueryProductDetail(productId);
+        }
+
+        public void saveProductImg(IFormFile file, int productProductId)
+        {
+            if (file == null)
+            {
+                return;
+            }
+
+            string fileExt = this.getFileExt(file.FileName);
+            var newFileName = this._hostingEnvironment.WebRootPath + "/wwwroot/images/prodduct-" + productProductId + "." + fileExt;
+
+            using (var stream = new FileStream(newFileName, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+        }
+
+        private string getFileExt(string fileName)
+        {
+            return fileName.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries).Last();
         }
     }
 }
