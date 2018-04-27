@@ -21,9 +21,18 @@ namespace AdpStore.Biz
             _hostingEnvironment = hostingEnvironment;
         }
 
-        public int AddNewProduct(Product newProduct)
+        public void AddNewProduct(Product newProduct, IFormFile image)
         {
-            return this.dao.AddNewProduct(newProduct);
+            if (image != null)
+            {
+                newProduct.ImageName = this.saveProductImg(image);
+            }
+            else
+            {
+                newProduct.ImageName = "product-default.jpg";
+            }
+
+            this.dao.AddNewProduct(newProduct);
         }
 
         public void DeleteProductById(int productId)
@@ -58,8 +67,13 @@ namespace AdpStore.Biz
             return this.dao.QueryProductBySituation(situation);
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(Product product, IFormFile image)
         {
+            if (image != null)
+            {
+                product.ImageName = this.saveProductImg(image);
+            }
+
             this.dao.UpdateProduct(product);
         }
 
@@ -68,20 +82,18 @@ namespace AdpStore.Biz
             return this.dao.QueryProductDetail(productId);
         }
 
-        public void saveProductImg(IFormFile file, int productProductId)
+        private string saveProductImg(IFormFile file)
         {
-            if (file == null)
-            {
-                return;
-            }
-
             string fileExt = this.getFileExt(file.FileName);
-            var newFileName = this._hostingEnvironment.WebRootPath + "/wwwroot/images/prodduct-" + productProductId + "." + fileExt;
+            string fileName = System.Guid.NewGuid().ToString() + "." + fileExt;
+            var newFileName = this._hostingEnvironment.WebRootPath + "/wwwroot/images/" + fileName;
 
             using (var stream = new FileStream(newFileName, FileMode.Create))
             {
                 file.CopyTo(stream);
             }
+
+            return fileName;
         }
 
         private string getFileExt(string fileName)

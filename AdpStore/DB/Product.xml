@@ -12,6 +12,7 @@
             Price,
             Situation,
             Style,
+            ImageName,
             Indate
         FROM dbo.Product WITH(NOLOCK)
         WHERE Style=@Style
@@ -31,6 +32,7 @@
             DetailDescription,
             Price,
             Situation,
+            ImageName,
             Style,
             Indate
         FROM dbo.Product WITH(NOLOCK)
@@ -46,6 +48,7 @@
             SimpleDescription,
             DetailDescription,
             Price,
+            ImageName,
             Situation,
             Style,
             Indate
@@ -66,6 +69,7 @@
             SimpleDescription,
             DetailDescription,
             Price,
+            ImageName,
             Situation,
             Style,
             Indate
@@ -78,10 +82,10 @@
       <Text>
         <![CDATA[
         INSERT TOP(1) INTO dbo.Product
-            (Name, SimpleDescription, DetailDescription, Price, Situation, Style)
+            (Name, SimpleDescription, DetailDescription, Price, Situation, Style, ImageName)
             OUTPUT Inserted.ProductId
         VALUES
-            (@Name, @SimpleDescription, @DetailDescription, @Price, @Situation, @Style)
+            (@Name, @SimpleDescription, @DetailDescription, @Price, @Situation, @Style, @ImageName)
       ]]>
       </Text>
     </DbSql>
@@ -100,6 +104,7 @@
           SimpleDescription=@SimpleDescription,
           DetailDescription=@DetailDescription,
           Price=@Price,
+          ImageName=@ImageName,
           Situation=@Situation,
           Style=@Style
         WHERE ProductId=@ProductId
@@ -115,6 +120,7 @@
             SimpleDescription,
             DetailDescription,
             Price,
+            ImageName,
             Situation,
             Style,
             Indate

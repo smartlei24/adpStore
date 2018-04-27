@@ -16,6 +16,8 @@ namespace AdpStore.Models
 
         public decimal Price { get; set; }
 
+        public string ImageName { get; set; }
+
         public string Style { get; set; }
 
         public string Situation { get; set; }

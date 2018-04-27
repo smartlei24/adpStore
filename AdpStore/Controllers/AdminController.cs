@@ -104,7 +104,7 @@ namespace AdpStore.Controllers
         }
 
         [HttpPost("product/new-product")]
-        public IActionResult AddNewProduct(Product product)
+        public IActionResult AddNewProduct(Product product, IFormFile file)
         {
             if (string.IsNullOrWhiteSpace(User.Identity.Name))
             {
@@ -114,7 +114,7 @@ namespace AdpStore.Controllers
             {
                 return StatusCode(404);
             }
-            this.productBiz.AddNewProduct(product);
+            this.productBiz.AddNewProduct(product, file);
             return Redirect("/admin/product/");
         }
 
@@ -129,8 +129,7 @@ namespace AdpStore.Controllers
             {
                 return StatusCode(404);
             }
-            this.productBiz.UpdateProduct(product);
-            this.productBiz.saveProductImg(file, product.ProductId);
+            this.productBiz.UpdateProduct(product, file);
             return Redirect("/admin/product/");
         }
 

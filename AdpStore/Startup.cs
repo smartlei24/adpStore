@@ -25,9 +25,6 @@ namespace AdpStore
         private static string currentDirectory = Directory.GetCurrentDirectory();
         private static string dbDirectory = Path.Combine(currentDirectory, "DB");
 
-
-
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -65,7 +62,6 @@ namespace AdpStore
             }
             else
             {
-                //app.UseExceptionHandler("/error");
                 app.UseStatusCodePagesWithReExecute("/error");
             }
 

@@ -65,3 +65,5 @@ CREATE TABLE dbo.[Order]
     OrderPrice INT NOT NULL,
     Indate DATETIME DEFAULT GETDATE()
 )
+
+ALTER TABLE dbo.[Product] ADD ImageName VARCHAR(100) NOT NULL

@@ -19,14 +19,12 @@ namespace AdpStore.Biz
 
         List<Product> QueryProductsBySituation(string situation);
 
-        int AddNewProduct(Product newProduct);
+        void AddNewProduct(Product newProduct, IFormFile image);
 
         void DeleteProductById(int productId);
 
-        void UpdateProduct(Product product);
+        void UpdateProduct(Product product, IFormFile image);
 
         Product QueryProductById(int productId);
-
-        void saveProductImg(IFormFile file, int productProductId);
     }
 }

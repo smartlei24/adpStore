@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form action="/admin/user-editor" method="post" >
+        <form action="/admin/user-editor" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserId" class="control-label">用户ID</label>
@@ -18,18 +18,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">用户名</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Balance" class="control-label">余额</label>
-                <input asp-for="Balance" type="number" step="0.01" class="form-control" />
+                <input asp-for="Name" class="form-control" readonly />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label">密码</label>
                 <input asp-for="Password" type="password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Balance" class="control-label">余额</label>
+                <input asp-for="Balance" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label">地址</label>

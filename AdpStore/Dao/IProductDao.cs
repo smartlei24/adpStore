@@ -19,7 +19,7 @@ namespace AdpStore.Dao
 
         Product QueryProductDetail(int productId);
 
-        int AddNewProduct(Product newProduct);
+        void AddNewProduct(Product newProduct);
 
         void DeleteProductById(int productId);
 

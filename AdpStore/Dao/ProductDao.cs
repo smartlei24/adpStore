@@ -16,9 +16,9 @@ namespace AdpStore.Dao
             _db = db;
         }
 
-        public int AddNewProduct(Product newProduct)
+        public void AddNewProduct(Product newProduct)
         {
-            return this._db.GetCommand("InsertANewProduct").ExecuteScalar<int>(newProduct);
+            this._db.GetCommand("InsertANewProduct").ExecuteNonQuery(newProduct);
         }
 
         public void DeleteProductById(int productId)
