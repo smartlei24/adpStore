@@ -86,7 +86,7 @@ namespace AdpStore.Biz
         {
             string fileExt = this.getFileExt(file.FileName);
             string fileName = System.Guid.NewGuid().ToString() + "." + fileExt;
-            var newFileName = this._hostingEnvironment.WebRootPath + "/wwwroot/images/" + fileName;
+            var newFileName = this._hostingEnvironment.WebRootPath + "/images/" + fileName;
 
             using (var stream = new FileStream(newFileName, FileMode.Create))
             {

@@ -10,12 +10,16 @@
 <hr />
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form action="/admin/product/new-product" method="post">
+        <form action="/admin/product/new-product" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">商品名称</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">商品图片</label>
+                <input name="file" type="file" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="SimpleDescription" class="control-label">简略描述</label>
