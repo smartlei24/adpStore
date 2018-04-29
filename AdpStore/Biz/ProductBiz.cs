@@ -85,7 +85,7 @@ namespace AdpStore.Biz
         private string saveProductImg(IFormFile file)
         {
             string fileExt = this.getFileExt(file.FileName);
-            string fileName = System.Guid.NewGuid().ToString() + "." + fileExt;
+            string fileName = System.Guid.NewGuid() + "." + fileExt;
             var newFileName = this._hostingEnvironment.WebRootPath + "/images/" + fileName;
 
             using (var stream = new FileStream(newFileName, FileMode.Create))
