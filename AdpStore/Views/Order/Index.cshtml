@@ -15,7 +15,8 @@
                 {
                 <div class="row" style="margin-bottom: 10px;">
                     <div class="col-md-2">
-                        <img src="~/images/product1.jpg/@(groupedOrder[i].FirstOrDefault().OrderId).jpg" style="width: 100%" onerror='this.src="/images/pic1.jpg"' />
+                        <img src="/images/@(groupedOrder[i].FirstOrDefault().ImageName)" 
+                             style="width: 100%" />
                     </div>
 
                     <div class="cart-item-info col-md-10">

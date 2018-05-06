@@ -9,6 +9,7 @@
             a.UserName,
             a.ProductId,
             b.Name AS ProductName,
+            b.ImageName AS ImageName,
             a.Quantity,
             a.OrderPrice,
             a.Indate
@@ -27,6 +28,7 @@
             a.UserName,
             a.ProductId,
             b.Name AS ProductName,
+            b.ImageName AS ImageName,
             a.Quantity,
             a.OrderPrice,
             a.Indate
